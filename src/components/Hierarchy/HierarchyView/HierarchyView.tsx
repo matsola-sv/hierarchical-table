@@ -8,7 +8,7 @@ import {fetchRootNodesChunk} from "store/hierarchy/hierarchySlice";
 // Hooks
 import {useTypedSelector} from "hooks/useTypedSelector";
 // Components
-import HierarchyTable from "components/Hierarchy/HierarchyTable";
+import HierarchyTable from "components/Hierarchy/HierarchyTable/HierarchyTable";
 import EmptyState from "components/Common/EmptyState/EmptyState";
 
 const HierarchyView: FC = () => {

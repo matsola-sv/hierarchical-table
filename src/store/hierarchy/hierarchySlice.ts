@@ -3,6 +3,7 @@ import {createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import { TreeModelNode } from "models/tree";
 import { HierarchyState } from "./hierarchyTypes";
 // Services and utils
+import { getPublicUrl } from "utils/url";
 import { cloneTreeExcludingNode } from "services/treeService";
 import HierarchyService, {SearchResult} from "services/hierarchyService";
 
@@ -12,7 +13,7 @@ import HierarchyService, {SearchResult} from "services/hierarchyService";
  * The service also provides access to the tree and allows fetching child nodes.
  */
 const hierarchyService = new HierarchyService(
-    "/database/example-large-data.json"
+    getPublicUrl("/database/example-large-data.json")
 );
 
 /**

@@ -9,7 +9,7 @@ import {TreeModelNode} from "models/tree";
 import {AppDispatch} from "store";
 import {removeHierarchyBranch} from "store/hierarchy/hierarchySlice";
 // Components
-import HierarchyTable from "components/Hierarchy/HierarchyTable";
+import HierarchyTable from "components/Hierarchy/HierarchyTable/HierarchyTable";
 
 interface ExpandableRowProps {
     row: TreeModelNode<any>;

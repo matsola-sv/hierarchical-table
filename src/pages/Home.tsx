@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import HierarchyView from "components/Hierarchy/HierarchyView";
+import HierarchyView from "components/Hierarchy/HierarchyView/HierarchyView";
 
 const HomePage: FC = () => {
     return (

@@ -4,7 +4,7 @@ import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material"
 // Models
 import {TreeModelNode} from "models/tree";
 // Components
-import ExpandableRow from "components/Hierarchy/ExpandableRow";
+import ExpandableRow from "components/Hierarchy/ExpandableRow/ExpandableRow";
 
 interface HierarchyTableProps {
     data: TreeModelNode<any>[];
