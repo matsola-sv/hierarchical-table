@@ -1,32 +1,5 @@
-# Tic-Tac-Toe on React
-Simple Tic-Tac-Toe game built with [React, TypeScript, and Redux].
-
-## [Live demo](https://matsola-sv.github.io/tictactoe-rxn/)
-
-### Desktop version
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot1.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot2.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot3.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot4.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot3.png)
-
-### Mobile version
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile1.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile2.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile3.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile4.png)
-
-![Screenshot](https://raw.githubusercontent.com/matsola-sv/tictactoe-rxn/master/docs/screenshots/Screenshot-mobile5.png)
-
+# Hierarchical Table
+Hierarchical Table built with [React, TypeScript, MUI, and Redux].
 
 ## Run Locally
 ### 1. Install Dependencies
@@ -57,13 +30,3 @@ $ npm run build
 ```
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Limitations
-
-* The fullscreen toggle button is not displayed if the browser does not support this functionality. For example, this feature does not work on iPhones or other devices that do not support fullscreen mode.
-
-## Future Features
-
-* Game save functionality with the ability to load the most recent save or select from a list.
-* Implementation of a bot for the game.
-* Socket-based multiplayer support: each player can play in their own window, or if a server is implemented, two players can play online.

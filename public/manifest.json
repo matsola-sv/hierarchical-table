@@ -1,11 +1,11 @@
 {
-  "short_name": "React-XO",
-  "name": "React Tic-Tac-Toe",
+  "short_name": "Hierarchical Table",
+  "name": "Hierarchical Table",
   "icons": [
     {
-      "src": "images/favicon.svg",
-      "sizes": "16x16",
-      "type": "image/png"
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     },
     {
       "src": "images/logo192.png",

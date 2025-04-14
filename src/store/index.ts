@@ -1,7 +1,8 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import hierarchyReducer  from "store/hierarchy/hierarchySlice";
 
 export const rootReducer = combineReducers({
-
+    hierarchy: hierarchyReducer,
 });
 
 export const store = configureStore({
