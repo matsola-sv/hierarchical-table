@@ -13,8 +13,8 @@ import EmptyState from "components/Common/EmptyState/EmptyState";
 
 const HierarchyView: FC = () => {
     const noDataMessage: string = "You have removed the entire hierarchy. Reload the page to restore it.";
-
     const tableContainerRef = useRef<HTMLDivElement>(null);
+
     const dispatch = useDispatch<AppDispatch>();
     const { data, loading, error } = useTypedSelector(state => state.hierarchy);
     const { loadedRootCount, hasMore } = useTypedSelector(state => state.hierarchy.pagination);
@@ -24,13 +24,6 @@ const HierarchyView: FC = () => {
         dispatch(fetchRootNodesChunk({ offset: 0 }));
     }, [dispatch]);
 
-    const handleLoadMore = () => {
-        const offset = loadedRootCount;
-
-        // Loads the next chunk of rows for the root hierarchy table
-        dispatch(fetchRootNodesChunk({ offset }));
-    };
-
     // After loading new data, scroll smoothly to the end of the table
     useEffect(() => {
         if (tableContainerRef.current) {
@@ -38,6 +31,13 @@ const HierarchyView: FC = () => {
             container.scrollTop = container.scrollHeight;
         }
     }, [data]);
+
+    const handleLoadMore = () => {
+        const offset = loadedRootCount;
+
+        // Loads the next chunk of rows for the root hierarchy table
+        dispatch(fetchRootNodesChunk({ offset }));
+    };
 
     if (loading) {
         return (

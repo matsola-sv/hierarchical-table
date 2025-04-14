@@ -4,21 +4,15 @@ import {useDispatch} from "react-redux";
 import { TableRow, TableCell, Collapse, IconButton, Box } from "@mui/material";
 import { Delete, KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 // Models
-import {TreeModelNode} from "models/tree";
+import {ExpandableRowProps} from "./ExpandableRow.types";
 // Redux
 import {AppDispatch} from "store";
 import {removeHierarchyBranch} from "store/hierarchy/hierarchySlice";
 // Components
 import HierarchyTable from "components/Hierarchy/HierarchyTable/HierarchyTable";
 
-interface ExpandableRowProps {
-    row: TreeModelNode<any>;
-    columns: string[];
-    background?: string;
-}
-
 const ExpandableRow: FC<ExpandableRowProps> = ({ row, columns, background = "#f1f6f6" }) => {
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
 
     const hasChildren = Array.isArray(row.children) && row.children.length > 0;
@@ -33,8 +27,8 @@ const ExpandableRow: FC<ExpandableRowProps> = ({ row, columns, background = "#f1
             <TableRow sx={{ background }}>
                 <TableCell>
                     {hasChildren ? (
-                        <IconButton size="small" onClick={() => setOpen(!open)}>
-                            {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                        <IconButton size="small" onClick={() => setIsOpen(!isOpen)}>
+                            {isOpen ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                         </IconButton>
                     ) : null}
                 </TableCell>
@@ -55,7 +49,7 @@ const ExpandableRow: FC<ExpandableRowProps> = ({ row, columns, background = "#f1
             {hasChildren && (
                 <TableRow>
                     <TableCell colSpan={columns.length + 1} sx={{ p: 0 }}>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Collapse in={isOpen} timeout="auto" unmountOnExit>
                             <Box margin={1}>
                                 <HierarchyTable data={children}/>
                             </Box>

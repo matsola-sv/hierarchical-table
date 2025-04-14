@@ -2,17 +2,9 @@ import { FC } from "react";
 // MUI
 import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
 // Models
-import {TreeModelNode} from "models/tree";
+import { HierarchyTableProps } from "./HierarchyTable.types";
 // Components
 import ExpandableRow from "components/Hierarchy/ExpandableRow/ExpandableRow";
-
-interface HierarchyTableProps {
-    data: TreeModelNode<any>[];
-    stickyHeader?: boolean;  // Stick the header to the top during table scroll
-    evenRowBg?: string;      // Background for even rows
-    oddRowBg?: string;       // Background for odd rows
-    headerBg?: string;
-}
 
 const HierarchyTable: FC<HierarchyTableProps> = (props) => {
     const {
