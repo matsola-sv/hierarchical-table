@@ -71,17 +71,19 @@ const HierarchyView: FC = () => {
     if (!data.length) {
         return <EmptyState message={noDataMessage} />;
     }
-
     return (
-        <Box margin={2}>
-            {/* Container with ref for scrolling and a fullscreen button in the table's first column */}
-            <Box ref={tableContainerRef} maxHeight="70vh" overflow="auto">
+        <Box margin={0} height="100vh" display="flex" flexDirection="column">
+            {/* Container for the table that fills the available screen height */}
+            {/* and a fullscreen button in the table's first column */}
+            <Box
+                ref={tableContainerRef}
+                flex="1"  // Fill all height
+                overflow="auto"
+            >
                 <HierarchyTable
                     data={data}
                     stickyHeader={true}
-                    headerFirstCell={(
-                        <FullscreenToggle iconSize={IconFontSize.large}/>
-                    )}
+                    headerFirstCell={<FullscreenToggle iconSize={IconFontSize.large} />}
                 />
             </Box>
 
@@ -93,7 +95,7 @@ const HierarchyView: FC = () => {
                 </Box>
             )}
         </Box>
-    );
+    )
 };
 
 export default HierarchyView;
