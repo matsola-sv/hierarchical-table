@@ -1,15 +1,18 @@
-import {FC, useEffect, useRef} from "react";
+import { FC, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 // MUI
-import {Box, Button, CircularProgress, Typography} from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
+// Models
+import { IconFontSize } from "models/ui";
 // Redux
 import { AppDispatch } from "store";
-import {fetchRootNodesChunk} from "store/hierarchy/hierarchySlice";
+import { fetchRootNodesChunk } from "store/hierarchy/hierarchySlice";
 // Hooks
-import {useTypedSelector} from "hooks/useTypedSelector";
+import { useTypedSelector } from "hooks/useTypedSelector";
 // Components
 import HierarchyTable from "components/Hierarchy/HierarchyTable/HierarchyTable";
 import EmptyState from "components/Common/EmptyState/EmptyState";
+import FullscreenToggle from "components/Common/Controls/FullscreenToggle/FullscreenToggle";
 
 const HierarchyView: FC = () => {
     const noDataMessage: string = "You have removed the entire hierarchy. Reload the page to restore it.";
@@ -71,11 +74,14 @@ const HierarchyView: FC = () => {
 
     return (
         <Box margin={2}>
-            {/* Container with ref for scrolling */}
+            {/* Container with ref for scrolling and a fullscreen button in the table's first column */}
             <Box ref={tableContainerRef} maxHeight="70vh" overflow="auto">
                 <HierarchyTable
                     data={data}
                     stickyHeader={true}
+                    headerFirstCell={(
+                        <FullscreenToggle iconSize={IconFontSize.large}/>
+                    )}
                 />
             </Box>
 

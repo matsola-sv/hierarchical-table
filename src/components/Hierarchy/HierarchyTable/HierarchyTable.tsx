@@ -1,6 +1,6 @@
-import { FC } from "react";
+import {FC} from "react";
 // MUI
-import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 // Models
 import { HierarchyTableProps } from "./HierarchyTable.types";
 // Components
@@ -12,7 +12,8 @@ const HierarchyTable: FC<HierarchyTableProps> = (props) => {
         stickyHeader = false,
         headerBg = "#51efd7",
         oddRowBg = "#faf6f6",
-        evenRowBg = "#ffffff"
+        evenRowBg = "#ffffff",
+        headerFirstCell = null
     } = props;
 
     if (!data || data.length === 0) {
@@ -34,7 +35,10 @@ const HierarchyTable: FC<HierarchyTableProps> = (props) => {
             <Table size="small">
                 <TableHead sx={{ backgroundColor: headerBg, ...stickyHeaderStyle }}>
                     <TableRow>
-                        <TableCell />
+                        <TableCell >
+                            {headerFirstCell}
+                        </TableCell>
+
                         {columns.map((col) => (
                             <TableCell key={col} sx={{ fontWeight: "bold" }}>
                                 {col}
