@@ -14,8 +14,8 @@ interface DataNode<T> {
     };
 }
 
-export default class HierarchyService {
-    private forest: TreeModelNode<any>[] = [];
+export default class HierarchyService<T> {
+    private forest: TreeModelNode<T>[] = [];
     private idCounter: number = 1; // Counter for generating unique node IDs per node of tree
 
     /**
@@ -40,7 +40,7 @@ export default class HierarchyService {
         // Generate unique node id using instance-specific counter
         const generateId = () => this.idCounter++;
 
-        this.forest = json.map((rootNode: any) => {
+        this.forest = json.map((rootNode: DataNode<T>) => {
             return this.convertToTreeModelNode(rootNode, generateId);
         });
     }
@@ -49,7 +49,7 @@ export default class HierarchyService {
      * Fetching all descendants of the node, along with their sub-descendants
      * parentId = 0 - root node
      */
-    async getChildren(parentId: number, offset = 0, limit = 10): Promise<SearchResult<any>> {
+    async getChildren(parentId: number, offset = 0, limit = 10): Promise<SearchResult<T>> {
         // Loads the tree if it hasn't been loaded yet
         await this.loadTree();
 
@@ -61,7 +61,7 @@ export default class HierarchyService {
             };
         }
 
-        let foundNode: TreeModelNode<any> | null = null;
+        let foundNode: TreeModelNode<T> | null = null;
 
         // Iterating through the array of root nodes
         for (const root of this.forest) {
@@ -86,14 +86,16 @@ export default class HierarchyService {
      * Converts data from a JSON file format into the structure required for the TreeModel.
      * The function processes each node and its children recursively, generating a unique ID for each node.
      */
-    private convertToTreeModelNode<T>(node: DataNode<T>, generateUniqueId: () => number): TreeModelNode<T> {
+    private convertToTreeModelNode(node: DataNode<T>, generateUniqueId: () => number): TreeModelNode<T> {
         const children: TreeModelNode<T>[] = [];
 
         // Iterate through child relations and convert records to tree nodes
         for (const key in node.children) {
             const relation = node.children[key];
+
             if (relation?.records?.length) {
-                relation.records.forEach((record: any) => {
+                const records = relation.records as DataNode<T>[];
+                records.forEach((record) => {
                     children.push(
                         this.convertToTreeModelNode(record, generateUniqueId)
                     );
@@ -110,7 +112,7 @@ export default class HierarchyService {
         };
     }
 
-    private findNodeById(node: TreeModelNode<any>, id: number): TreeModelNode<any> | null {
+    private findNodeById(node: TreeModelNode<T>, id: number): TreeModelNode<T> | null {
         if (node.model.id === id) {
             return node;
         }
