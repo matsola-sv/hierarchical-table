@@ -20,7 +20,7 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"erasableSyntaxOnly": true,
+		"erasableSyntaxOnly": false, // Allows full TypeScript syntax like enums (not just erasable syntax).
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true,
 
