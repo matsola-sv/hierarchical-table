@@ -1,4 +1,5 @@
 import { type FC, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 // MUI
@@ -20,13 +21,14 @@ import EmptyState from '@/components/Common/EmptyState/EmptyState';
 import HierarchyTable from '@/components/Hierarchy/HierarchyTable/HierarchyTable';
 
 const HierarchyView: FC = () => {
-	const noDataMessage: string =
-		'You have removed the entire hierarchy. Reload the page to restore it.';
 	const tableContainerRef = useRef<HTMLDivElement>(null);
 
+	const { t } = useTranslation();
 	const dispatch = useDispatch<AppDispatch>();
 	const { data, loading, error } = useTypedSelector(state => state.hierarchy);
 	const { loadedRootCount, hasMore } = useTypedSelector(state => state.hierarchy.pagination);
+
+	const noDataMessage: string = t('components.hierarchy.hierarchyView.noData');
 
 	// Loads the first chunk of rows for the root hierarchy table.
 	useEffect(() => {
@@ -109,7 +111,7 @@ const HierarchyView: FC = () => {
 						onClick={handleLoadMore}
 						size='small'
 					>
-						Load more
+						{t('common.buttons.loadMore.title')}
 					</Button>
 				</Box>
 			)}

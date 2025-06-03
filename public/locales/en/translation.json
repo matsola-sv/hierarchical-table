@@ -1,0 +1,31 @@
+{
+	"common": {
+		"buttons": {
+			"loadMore": {
+				"title": "Load more"
+			}
+		}
+	},
+	"pages": {
+		"notFound": {
+			"message": "Page you are looking for does not exists."
+		}
+	},
+	"components": {
+		"hierarchy": {
+			"hierarchyView": {
+				"noData": "You have removed the entire hierarchy. Reload the page to restore it."
+			}
+		},
+		"common": {
+			"controls": {
+				"fullscreenToggle": {
+					"labels": {
+						"enter": "Full screen",
+						"exit": "Exit full screen"
+					}
+				}
+			}
+		}
+	}
+}

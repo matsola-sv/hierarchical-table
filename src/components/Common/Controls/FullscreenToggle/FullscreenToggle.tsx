@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
@@ -13,13 +14,14 @@ import { IconFontSize } from '@/models/ui';
 import useFullscreen from '@/hooks/fullscreen/useFullscreen';
 
 const FullscreenToggle: FC<FullscreenToggleProps> = props => {
+	const { t } = useTranslation();
 	const {
 		isDisabled = false,
 		isHideIfUnsupported = false,
 		iconSize = IconFontSize.medium,
 		labels = {
-			enter: 'Full screen',
-			exit: 'Exit full screen',
+			enter: t('components.common.controls.fullscreenToggle.labels.enter'),
+			exit: t('components.common.controls.fullscreenToggle.labels.exit'),
 		},
 	} = props;
 
