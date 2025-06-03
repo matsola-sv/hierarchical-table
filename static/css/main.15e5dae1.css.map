@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.15e5dae1.css","mappings":"AAAA,KACE,iBACF,CCDA,KACI,QACJ","sources":["components/App/App.css","assets/css/index.css"],"sourcesContent":[".App {\r\n  text-align: center;\r\n}","\r\nbody {\r\n    margin: 0; /* Removes default browser margin */\r\n}"],"names":[],"sourceRoot":""}
