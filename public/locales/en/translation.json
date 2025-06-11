@@ -1,4 +1,16 @@
 {
+	"errors": {
+		"validation": {
+			"required": "{{field}} is required.",
+			"min": "{{field}} must be at least {{min}} characters.",
+			"max": "{{field}} must be at most {{max}} characters."
+		},
+		"network": {
+			"generic": "Something went wrong. Please try again.",
+			"requestFailed": "Network problems"
+		},
+		"unknown": "Unknown error occurred."
+	},
 	"common": {
 		"buttons": {
 			"loadMore": {
@@ -24,6 +36,27 @@
 						"enter": "Full screen",
 						"exit": "Exit full screen"
 					}
+				}
+			}
+		},
+		"auth": {
+			"signUpForm": {
+				"errors": {
+					"confirmPassword": {
+						"match": "Passwords must match."
+					},
+					"email": {
+						"alreadyUse": "This email is already in use."
+					}
+				}
+			},
+			"signInForm": {
+				"errors": {
+					"email": {
+						"invalid": "Invalid email address.",
+						"accountExists": "An account with this email {{email}} exists via a different sign-in method. Please use the original provider to sign in."
+					},
+					"invalidCredential": "Incorrect password or email."
 				}
 			}
 		}

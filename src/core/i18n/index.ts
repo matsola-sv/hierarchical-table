@@ -22,3 +22,5 @@ i18n.use(HttpBackend) // Enables HTTP backend to load translations from /public/
 			escapeValue: false,
 		},
 	});
+
+export default i18n;
