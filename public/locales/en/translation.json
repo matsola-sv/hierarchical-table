@@ -80,6 +80,18 @@
 					},
 					"invalidCredential": "Incorrect password or email."
 				}
+			},
+			"authLinks": {
+				"signIn": "Sign In",
+				"signUp": "Sign Up"
+			}
+		},
+		"profile": {
+			"defaultName": "User",
+			"shortProfile": {
+				"buttons": {
+					"signOut": "Sign Out"
+				}
 			}
 		}
 	}
