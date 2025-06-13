@@ -21,10 +21,9 @@
 		"^@/services/(.*)$",
 		"^@/store(/.*)?$",
 		"^@/pages/(.*)$",
-		"^@/components/(.*)$",
+		"^@/components(/.*)?(?<!\\.(css|scss|sass|less))$",
 		"^@/assets/(.*)$",
-		"^@/[./](?!.*\\.css$)",
-		".*\\.css$"
+		"\\.(css|scss|sass|less)$"
 	],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true
