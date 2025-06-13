@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useSnackbar } from 'notistack';
 
-import type { OAuthProviders } from '@/models/auth';
+import { OAuthProviders } from '@/models/auth';
 
 import { authService, parseAuthError } from '@/services/auth/authService';
 

@@ -1,0 +1,60 @@
+.auth-form {
+	width: 100%;
+	max-width: 360px;
+	margin: 0 auto;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.form-input {
+	width: 100%;
+	padding: 10px 14px;
+	font-size: 15px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	box-sizing: border-box;
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
+	background-color: transparent;
+}
+
+.form-input:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+	outline: none;
+}
+
+.text-red-500 {
+	color: #ef4444;
+	font-size: 13px;
+	margin-top: 6px;
+}
+
+.form-button {
+	width: 100%;
+	padding: 12px 0;
+	background-color: #2563eb;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition:
+		background-color 0.2s,
+		transform 0.1s;
+}
+
+.form-button:hover {
+	background-color: #1e40af;
+	transform: translateY(-1px);
+}
+
+.form-button:active {
+	transform: translateY(0);
+}

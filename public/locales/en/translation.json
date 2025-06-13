@@ -40,6 +40,9 @@
 			}
 		},
 		"auth": {
+			"authLayout": {
+				"or": "OR"
+			},
 			"providerAuth": {
 				"title": "Sign in with",
 				"buttons": {
@@ -48,6 +51,17 @@
 				}
 			},
 			"signUpForm": {
+				"title": "Create your account",
+				"displayName": {
+					"title": "Display Name",
+					"placeholder": "Peter Wozniak"
+				},
+				"email": "Email",
+				"password": "Password",
+				"confirmPassword": "Repeat Password",
+				"buttons": {
+					"submit": "Sign Up"
+				},
 				"errors": {
 					"confirmPassword": {
 						"match": "Passwords must match."

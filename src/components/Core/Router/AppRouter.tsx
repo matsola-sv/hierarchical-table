@@ -4,6 +4,7 @@ import * as ROUTES from '@/constants/routes';
 
 import { getPublicUrl } from '@/utils/url';
 
+import SignUpPage from '@/pages/Auth/SignUp';
 import NotFoundPage from '@/pages/Errors/NotFound';
 import HomePage from '@/pages/Home';
 
@@ -18,6 +19,10 @@ function AppRouter() {
 				<Route
 					path={ROUTES.HOME}
 					element={<HomePage />}
+				/>
+				<Route
+					path={ROUTES.SIGN_UP}
+					element={<SignUpPage />}
 				/>
 			</Routes>
 		</BrowserRouter>

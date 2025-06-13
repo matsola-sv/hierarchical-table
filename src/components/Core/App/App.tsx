@@ -8,7 +8,7 @@ import './App.css';
 
 const App: FC = () => {
 	return (
-		<SnackbarProvider autoHideDuration={2000}>
+		<SnackbarProvider autoHideDuration={5000}>
 			<div className='App'>
 				<AppRouter />
 			</div>
