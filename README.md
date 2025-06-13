@@ -22,7 +22,39 @@ with all of their descendants. Designed for scalable presentation of dynamic dat
 $ npm install
 ```
 
-### 2. Run development server
+### 2. Create a new firebase project
+
+#### 2.1. Login to your google account and create a new firebase project [here](https://console.firebase.google.com/u/0/)
+
+#### 2.2. Create an `.env` file and add the following variables.
+
+You can also set a project subdomain in .env. The default is '/'.
+For example:
+http://my-project.com/dev.ht
+
+```
+VITE_PUBLIC_URL=/dev.ht
+```
+
+#### 2.3. Add your Firebase config values to the .env file:
+
+(You can find these in your Firebase project settings)
+
+```
+
+VITE_FIREBASE_API_KEY=<your-api-key>
+VITE_FIREBASE_AUTH_DOMAIN=<yourauthdomin.firebaseapp.com>
+VITE_FIREBASE_DB_URL=<https://yourdburl.firebaseio.com>
+VITE_FIREBASE_PROJECT_ID=<yourproject-id>
+VITE_FIREBASE_STORAGE_BUCKET=<yourstoragebucket.appspot.com>
+VITE_FIREBASE_MESSAGING_SENDER_ID=<your-messaging-sender-id>
+VITE_FIREBASE_APP_ID=<your-app-id>
+
+```
+
+#### 2.4. After adding the config, go to the Firebase Console and enable the authentication providers (e.g., Google, GitHub) you plan to use.
+
+### 3. Run development server
 
 ```sh
 $ $ npm run dev
@@ -34,7 +66,7 @@ Open http://localhost:5173 to view it in the browser (default Vite port).
 In development, the app uses the `.env.local /.env.development` variable:
 
 ```sh
-VITE_PUBLIC_URL=/local.ht
+VITE_PUBLIC_URL=/
 ```
 
 You can define it in a `.env` file
