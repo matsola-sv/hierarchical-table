@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { type SignUpFormFields, signUpSchema } from './SignUpForm.schema';
+import { type SignInFormFields, signInSchema } from './SignInForm.schema';
 
 import * as ROUTES from '@/constants/routes';
 
@@ -14,40 +13,31 @@ import { useAuthFormError } from '@/hooks/useAuthFormError';
 
 import { authService } from '@/services/auth/authService';
 
-import { type AppDispatch } from '@/store';
-import { setProfile } from '@/store/profile/profileSlice';
-
 import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner/OverlaySpinner';
 
 import '@/components/Auth/AuthForms.css';
 
-const SignUpForm = () => {
+const SignInForm = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const dispatch = useDispatch<AppDispatch>();
-	const handleError = useAuthFormError<SignUpFormFields>();
+	const handleError = useAuthFormError<SignInFormFields>();
 
 	const {
 		register,
 		handleSubmit,
 		setError,
 		formState: { errors },
-	} = useForm<SignUpFormFields>({
-		resolver: zodResolver(signUpSchema(t)),
+	} = useForm<SignInFormFields>({
+		resolver: zodResolver(signInSchema(t)),
 	});
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onSubmit = async (data: FieldValues) => {
 		setIsLoading(true);
 		try {
-			// Create account and add display name to user profile
-			const user = await authService.createAccount(data.email, data.password);
-			const userUpdated = await authService.updateProfile(user.id, {
-				displayName: data.displayName,
-			});
+			await authService.signIn(data.email, data.password);
 
-			// Update authorization state (DisplayName)
-			dispatch(setProfile(userUpdated));
+			// Redirect to the home page
 			navigate(ROUTES.HOME);
 		} catch (error) {
 			handleError(error, setError);
@@ -65,18 +55,6 @@ const SignUpForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className='auth-form'
 		>
-			<div className='form-group'>
-				<input
-					{...register('displayName')}
-					type='text'
-					placeholder={t('components.auth.signUpForm.displayName.placeholder')}
-					className='form-input'
-				/>
-			</div>
-			{errors.displayName && (
-				<p className='text-red-500'>{`${errors.displayName.message}`}</p>
-			)}
-
 			<div className='form-group'>
 				<input
 					{...register('email')}
@@ -99,18 +77,6 @@ const SignUpForm = () => {
 				<p className='text-red-500'>{`${errors.password.message}`}</p>
 			)}
 
-			<div className='form-group'>
-				<input
-					{...register('confirmPassword')}
-					type='password'
-					className='form-input'
-					placeholder={t('components.auth.signUpForm.confirmPassword')}
-				/>
-			</div>
-			{errors.confirmPassword && (
-				<p className='text-red-500'>{`${errors.confirmPassword.message}`}</p>
-			)}
-
 			<button
 				type='submit'
 				className='form-button'
@@ -121,4 +87,4 @@ const SignUpForm = () => {
 	);
 };
 
-export default SignUpForm;
+export default SignInForm;
