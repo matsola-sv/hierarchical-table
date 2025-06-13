@@ -11,6 +11,7 @@ import {
 	signOut,
 } from 'firebase/auth';
 
+import { AuthErrorFields } from '@/models/auth';
 import type { User, UserProfile } from '@/models/identity';
 
 import firebaseApp from '@/core/firebase/config';
@@ -39,7 +40,7 @@ export const errorMap: Record<AuthErrorCode, ErrorInfo> = {
 		getMessage: () => i18n.t('components.auth.signInForm.errors.email.notFound'),
 	},
 	[AuthErrorCode.EmailInUse]: {
-		field: 'email',
+		field: AuthErrorFields.Generic,
 		getMessage: () => i18n.t('components.auth.signUpForm.errors.email.alreadyUse'),
 	},
 	[AuthErrorCode.InvalidEmail]: {
@@ -51,12 +52,12 @@ export const errorMap: Record<AuthErrorCode, ErrorInfo> = {
 		getMessage: () => i18n.t('components.auth.signInForm.errors.invalidCredential'),
 	},
 	[AuthErrorCode.AccountExistsDiffCred]: {
-		field: 'generic',
+		field: AuthErrorFields.Generic,
 		getMessage: email =>
 			i18n.t('components.auth.signInForm.errors.email.accountExists', { email }),
 	},
 	[AuthErrorCode.NetworkFailed]: {
-		field: 'generic',
+		field: AuthErrorFields.Generic,
 		getMessage: () => i18n.t('errors.network.requestFailed'),
 	},
 };
@@ -157,7 +158,7 @@ export function parseFirebaseAuthError(
 	}
 
 	return {
-		field: 'generic',
+		field: AuthErrorFields.Generic,
 		message: i18n.t('errors.network.generic'),
 	};
 }

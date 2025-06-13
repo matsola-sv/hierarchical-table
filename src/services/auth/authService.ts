@@ -1,3 +1,4 @@
+import { AuthErrorFields, type IAuthService, OAuthProviders } from '@/models/auth';
 import type { User, UserProfile } from '@/models/identity';
 
 import type { SignInFormFields } from '@/components/Auth/SignInForm/SignInForm.schema';
@@ -11,29 +12,8 @@ import {
 import i18n from '@/core/i18n';
 
 export interface IAuthError {
-	field: keyof SignInFormFields | 'generic';
+	field: keyof SignInFormFields | AuthErrorFields.Generic;
 	message: string;
-}
-
-/**
- *  Public methods exposed by the authentication service
- */
-export interface IAuthService {
-	createAccount(email: string, password: string): Promise<User>;
-	signIn(email: string, password: string): Promise<User>;
-	signInWithGoogle(): Promise<User>;
-	signInWithGithub(): Promise<User>;
-	signOut(): Promise<void>;
-	updateProfile(userId: string, profile: UserProfile): Promise<User>;
-	getCurrentUser(): User | null;
-}
-
-/**
- * OAuth-based third-party authorization providers
- */
-export enum OAuthProviders {
-	Google = 'Google',
-	GitHub = 'GitHub',
 }
 
 export class AuthService implements IAuthService {
@@ -93,7 +73,10 @@ export function parseAuthError(error: unknown, logUnmapped = true): IAuthError {
 	if (fbError) {
 		return parseFirebaseAuthError(fbError, logUnmapped);
 	}
-	return { field: 'generic', message: i18n.t('errors.unknown') };
+	return {
+		field: AuthErrorFields.Generic,
+		message: i18n.t('errors.unknown'),
+	};
 }
 
 // Init a service with a Firebase implementation
