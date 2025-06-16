@@ -22,11 +22,6 @@ const ProvidersOAuth = () => {
 				throw new Error(`No user info received from provider: ${provider}`);
 				return;
 			}
-
-			enqueueSnackbar(
-				`Welcome, ${user.displayName}! Your email is: ${user.email}`,
-				{ variant: 'success' },
-			);
 		} catch (error) {
 			enqueueSnackbar(parseAuthError(error).message, {
 				variant: 'error',

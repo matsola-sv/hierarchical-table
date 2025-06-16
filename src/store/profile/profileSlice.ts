@@ -5,29 +5,35 @@ import type { User } from '@/models/identity';
 interface ProfileState {
 	user: User | null;
 	isLoading: boolean;
-	error: string | null;
 }
 
 const initialState: ProfileState = {
 	user: null,
 	isLoading: false,
-	error: null,
 };
 
 const profileSlice = createSlice({
 	name: 'profile',
 	initialState,
 	reducers: {
-		setProfile(state, action: PayloadAction<User>) {
+		// Sets the initial profile state when authentication changes.
+		// The loading flag reflects whether further profile updates are still in progress.
+		setProfile: (state, action: PayloadAction<ProfileState>) => {
+			state.user = action.payload.user;
+			state.isLoading = action.payload.isLoading;
+		},
+
+		// Applies the updated user profile and marks loading as complete.
+		updateUserProfile: (state, action: PayloadAction<User>) => {
 			state.user = action.payload;
-			state.error = null;
 			state.isLoading = false;
 		},
+
 		clearProfile() {
 			return initialState;
 		},
 	},
 });
 
-export const { setProfile, clearProfile } = profileSlice.actions;
+export const { setProfile, updateUserProfile, clearProfile } = profileSlice.actions;
 export default profileSlice.reducer;

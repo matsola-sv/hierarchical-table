@@ -15,7 +15,7 @@ import { useAuthFormError } from '@/hooks/useAuthFormError';
 import { authService } from '@/services/auth/authService';
 
 import { type AppDispatch } from '@/store';
-import { setProfile } from '@/store/profile/profileSlice';
+import { updateUserProfile } from '@/store/profile/profileSlice';
 
 import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner/OverlaySpinner';
 
@@ -23,9 +23,9 @@ import '@/components/Auth/AuthForms.css';
 
 const SignUpForm = () => {
 	const { t } = useTranslation();
-	const navigate = useNavigate();
 	const dispatch = useDispatch<AppDispatch>();
 	const handleError = useAuthFormError<SignUpFormFields>();
+	const navigate = useNavigate();
 
 	const {
 		register,
@@ -39,15 +39,18 @@ const SignUpForm = () => {
 
 	const onSubmit = async (data: FieldValues) => {
 		setIsLoading(true);
+
 		try {
 			// Create account and add display name to user profile
-			const user = await authService.createAccount(data.email, data.password);
+			const user = await authService.createAccount(data.email, data.password, {
+				isProfilePending: true,
+			});
 			const userUpdated = await authService.updateProfile(user.id, {
 				displayName: data.displayName,
 			});
 
 			// Update authorization state (DisplayName)
-			dispatch(setProfile(userUpdated));
+			dispatch(updateUserProfile(userUpdated));
 			navigate(ROUTES.HOME);
 		} catch (error) {
 			handleError(error, setError);

@@ -1,10 +1,14 @@
 import type { User, UserProfile } from '@/models/identity';
 
+export interface IAuthOptions {
+	isProfilePending?: boolean;
+}
+
 /**
  *  Public methods exposed by the authentication service
  */
 export interface IAuthService {
-	createAccount(email: string, password: string): Promise<User>;
+	createAccount(email: string, password: string, options?: IAuthOptions): Promise<User>;
 	signIn(email: string, password: string): Promise<User>;
 	signInWithGoogle(): Promise<User>;
 	signInWithGithub(): Promise<User>;

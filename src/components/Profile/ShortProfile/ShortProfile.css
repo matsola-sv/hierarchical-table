@@ -5,6 +5,10 @@
 	font-family: system-ui, sans-serif;
 }
 
+.short-profile--spinner {
+	position: relative;
+}
+
 .short-profile__name {
 	font-weight: 500;
 	color: #333;
