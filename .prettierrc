@@ -22,6 +22,7 @@
 		"^@/store(/.*)?$",
 		"^@/pages/(.*)$",
 		"^@/components(/.*)?(?<!\\.(css|scss|sass|less))$",
+		"^\\./.*$",
 		"^@/assets/(.*)$",
 		"\\.(css|scss|sass|less)$"
 	],
