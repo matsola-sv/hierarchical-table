@@ -2,13 +2,10 @@ import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { type SignUpFormFields, signUpSchema } from './SignUpForm.schema';
-
-import * as ROUTES from '@/constants/routes';
 
 import { useAuthFormError } from '@/hooks/useAuthFormError';
 
@@ -25,7 +22,6 @@ const SignUpForm = () => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch<AppDispatch>();
 	const handleError = useAuthFormError<SignUpFormFields>();
-	const navigate = useNavigate();
 
 	const {
 		register,
@@ -51,7 +47,6 @@ const SignUpForm = () => {
 
 			// Update authorization state (DisplayName)
 			dispatch(updateUserProfile(userUpdated));
-			navigate(ROUTES.HOME);
 		} catch (error) {
 			handleError(error, setError);
 		} finally {

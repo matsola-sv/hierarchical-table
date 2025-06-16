@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { type SignInFormFields, signInSchema } from './SignInForm.schema';
-
-import * as ROUTES from '@/constants/routes';
 
 import { useAuthFormError } from '@/hooks/useAuthFormError';
 
@@ -19,7 +16,6 @@ import '@/components/Auth/AuthForms.css';
 
 const SignInForm = () => {
 	const { t } = useTranslation();
-	const navigate = useNavigate();
 	const handleError = useAuthFormError<SignInFormFields>();
 
 	const {
@@ -36,9 +32,6 @@ const SignInForm = () => {
 		setIsLoading(true);
 		try {
 			await authService.signIn(data.email, data.password);
-
-			// Redirect to the home page
-			navigate(ROUTES.HOME);
 		} catch (error) {
 			handleError(error, setError);
 		} finally {

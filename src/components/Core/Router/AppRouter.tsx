@@ -9,6 +9,8 @@ import SignUpPage from '@/pages/Auth/SignUp';
 import NotFoundPage from '@/pages/Errors/NotFound';
 import HomePage from '@/pages/Home';
 
+import PublicRoute from './PublicRoute';
+
 function AppRouter() {
 	return (
 		<BrowserRouter basename={getPublicUrl()}>
@@ -23,11 +25,19 @@ function AppRouter() {
 				/>
 				<Route
 					path={ROUTES.SIGN_UP}
-					element={<SignUpPage />}
+					element={
+						<PublicRoute>
+							<SignUpPage />
+						</PublicRoute>
+					}
 				/>
 				<Route
 					path={ROUTES.SIGN_IN}
-					element={<SignInPage />}
+					element={
+						<PublicRoute>
+							<SignInPage />
+						</PublicRoute>
+					}
 				/>
 			</Routes>
 		</BrowserRouter>
