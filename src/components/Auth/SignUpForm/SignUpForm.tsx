@@ -13,6 +13,7 @@ import { useAuthFormError } from '@/hooks/useAuthFormError';
 import { authService } from '@/services/auth/authService';
 
 import { type AppDispatch } from '@/store';
+import { setSignUpSubmitting } from '@/store/auth/authUISlice';
 import { updateUserProfile } from '@/store/profile/profileSlice';
 
 import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton/AppSubmitButton';
@@ -33,7 +34,12 @@ const SignUpForm = () => {
 	});
 	const [isLoading, setIsLoading] = useState(false);
 
+	const stopGlobalLoading = (): void => {
+		dispatch(setSignUpSubmitting(false));
+	};
+
 	const onSubmit = async (data: FieldValues) => {
+		dispatch(setSignUpSubmitting(true));
 		setIsLoading(true);
 
 		try {
@@ -41,16 +47,21 @@ const SignUpForm = () => {
 			const user = await authService.createAccount(data.email, data.password, {
 				isProfilePending: true,
 			});
+			// Stop global loading because the user is already authenticated and will be redirected,
+			// so the form is no longer needed and its blocking should be removed.
+			stopGlobalLoading();
+
 			const userUpdated = await authService.updateProfile(user.id, {
 				displayName: data.displayName,
 			});
-
 			// Update authorization state (DisplayName)
 			dispatch(updateUserProfile(userUpdated));
 		} catch (error) {
 			handleError(error, setError);
 		} finally {
-			setIsLoading(false); // Even if an error
+			// Even if an error
+			stopGlobalLoading();
+			setIsLoading(false);
 		}
 	};
 
@@ -61,28 +72,32 @@ const SignUpForm = () => {
 			noValidate
 		>
 			<AppTextField
+				disabled={isLoading}
 				label={t('components.auth.signUpForm.displayName.placeholder')}
 				error={!!errors.displayName}
 				helperText={errors.displayName?.message}
 				{...register('displayName')}
 			/>
 			<AppTextField
-				label={t('components.auth.signUpForm.email')}
 				type='email'
+				disabled={isLoading}
+				label={t('components.auth.signUpForm.email')}
 				error={!!errors.email}
 				helperText={errors.email?.message}
 				{...register('email')}
 			/>
 			<AppTextField
-				label={t('components.auth.signUpForm.password')}
 				type='password'
+				disabled={isLoading}
+				label={t('components.auth.signUpForm.password')}
 				error={!!errors.password}
 				helperText={errors.password?.message}
 				{...register('password')}
 			/>
 			<AppTextField
-				label={t('components.auth.signUpForm.confirmPassword')}
 				type='password'
+				disabled={isLoading}
+				label={t('components.auth.signUpForm.confirmPassword')}
 				error={!!errors.confirmPassword}
 				helperText={errors.confirmPassword?.message}
 				{...register('confirmPassword')}

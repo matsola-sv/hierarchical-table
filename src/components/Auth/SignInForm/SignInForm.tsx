@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Box } from '@mui/material';
@@ -9,15 +10,17 @@ import { type SignInFormFields, signInSchema } from './SignInForm.schema';
 
 import { useAuthFormError } from '@/hooks/useAuthFormError';
 
-import { sleep } from '@/utils/timing';
-
 import { authService } from '@/services/auth/authService';
+
+import type { AppDispatch } from '@/store';
+import { setSignInSubmitting } from '@/store/auth/authUISlice';
 
 import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton/AppSubmitButton';
 import AppTextField from '@/components/Common/UI/Form/AppTextField/AppTextField';
 
 const SignInForm = () => {
 	const { t } = useTranslation();
+	const dispatch = useDispatch<AppDispatch>();
 	const handleError = useAuthFormError<SignInFormFields>();
 
 	const {
@@ -31,14 +34,17 @@ const SignInForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onSubmit = async (data: FieldValues) => {
+		dispatch(setSignInSubmitting(true));
 		setIsLoading(true);
+
 		try {
-			await sleep(4000);
 			await authService.signIn(data.email, data.password);
 		} catch (error) {
 			handleError(error, setError);
 		} finally {
-			setIsLoading(false); // Even if an error
+			// Even if an error
+			dispatch(setSignInSubmitting(false));
+			setIsLoading(false);
 		}
 	};
 
@@ -49,15 +55,17 @@ const SignInForm = () => {
 			noValidate
 		>
 			<AppTextField
-				label={t('components.auth.signUpForm.email')}
 				type='email'
+				disabled={isLoading}
+				label={t('components.auth.signUpForm.email')}
 				error={!!errors.email}
 				helperText={errors.email?.message}
 				{...register('email')}
 			/>
 			<AppTextField
-				label={t('components.auth.signUpForm.password')}
 				type='password'
+				disabled={isLoading}
+				label={t('components.auth.signUpForm.password')}
 				error={!!errors.password}
 				helperText={errors.password?.message}
 				{...register('password')}

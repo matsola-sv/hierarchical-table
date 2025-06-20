@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -11,7 +12,11 @@ import { authService, parseAuthError } from '@/services/auth/authService';
 import SocialMediaButton from '@/components/Common/UI/Buttons/SocialMediaButton/SocialMediaButton';
 import GoogleIcon from '@/components/Common/UI/Icons/GoogleIcon/GoogleIcon';
 
-const ProvidersOAuth = () => {
+export interface ProvidersOAuthProps {
+	disabled?: boolean; // Disables all OAuth provider buttons
+}
+
+const ProvidersOAuth: FC<ProvidersOAuthProps> = ({ disabled = false }) => {
 	const { t } = useTranslation();
 	const { enqueueSnackbar } = useSnackbar();
 
@@ -46,6 +51,7 @@ const ProvidersOAuth = () => {
 				alignItems='center'
 			>
 				<SocialMediaButton
+					disabled={disabled}
 					startIcon={<GoogleIcon />}
 					onClick={() => onAuthProvider(OAuthProviders.Google)}
 				>
@@ -53,6 +59,7 @@ const ProvidersOAuth = () => {
 				</SocialMediaButton>
 
 				<SocialMediaButton
+					disabled={disabled}
 					startIcon={<GitHubIcon />}
 					onClick={() => onAuthProvider(OAuthProviders.GitHub)}
 				>
