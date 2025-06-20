@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Box } from '@mui/material';
 
 import { type SignUpFormFields, signUpSchema } from './SignUpForm.schema';
 
@@ -14,9 +15,8 @@ import { authService } from '@/services/auth/authService';
 import { type AppDispatch } from '@/store';
 import { updateUserProfile } from '@/store/profile/profileSlice';
 
-import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner/OverlaySpinner';
-
-import '@/components/Auth/AuthForms.css';
+import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton/AppSubmitButton';
+import AppTextField from '@/components/Common/UI/Form/AppTextField/AppTextField';
 
 const SignUpForm = () => {
 	const { t } = useTranslation();
@@ -54,68 +54,44 @@ const SignUpForm = () => {
 		}
 	};
 
-	if (isLoading) {
-		return <OverlaySpinner />;
-	}
-
 	return (
-		<form
+		<Box
+			component='form'
 			onSubmit={handleSubmit(onSubmit)}
-			className='auth-form'
+			noValidate
 		>
-			<div className='form-group'>
-				<input
-					{...register('displayName')}
-					type='text'
-					placeholder={t('components.auth.signUpForm.displayName.placeholder')}
-					className='form-input'
-				/>
-			</div>
-			{errors.displayName && (
-				<p className='text-red-500'>{`${errors.displayName.message}`}</p>
-			)}
+			<AppTextField
+				label={t('components.auth.signUpForm.displayName.placeholder')}
+				error={!!errors.displayName}
+				helperText={errors.displayName?.message}
+				{...register('displayName')}
+			/>
+			<AppTextField
+				label={t('components.auth.signUpForm.email')}
+				type='email'
+				error={!!errors.email}
+				helperText={errors.email?.message}
+				{...register('email')}
+			/>
+			<AppTextField
+				label={t('components.auth.signUpForm.password')}
+				type='password'
+				error={!!errors.password}
+				helperText={errors.password?.message}
+				{...register('password')}
+			/>
+			<AppTextField
+				label={t('components.auth.signUpForm.confirmPassword')}
+				type='password'
+				error={!!errors.confirmPassword}
+				helperText={errors.confirmPassword?.message}
+				{...register('confirmPassword')}
+			/>
 
-			<div className='form-group'>
-				<input
-					{...register('email')}
-					type='email'
-					placeholder={t('components.auth.signUpForm.email')}
-					className='form-input'
-				/>
-			</div>
-			{errors.email && <p className='text-red-500'>{`${errors.email.message}`}</p>}
-
-			<div className='form-group'>
-				<input
-					{...register('password')}
-					type='password'
-					className='form-input'
-					placeholder={t('components.auth.signUpForm.password')}
-				/>
-			</div>
-			{errors.password && (
-				<p className='text-red-500'>{`${errors.password.message}`}</p>
-			)}
-
-			<div className='form-group'>
-				<input
-					{...register('confirmPassword')}
-					type='password'
-					className='form-input'
-					placeholder={t('components.auth.signUpForm.confirmPassword')}
-				/>
-			</div>
-			{errors.confirmPassword && (
-				<p className='text-red-500'>{`${errors.confirmPassword.message}`}</p>
-			)}
-
-			<button
-				type='submit'
-				className='form-button'
-			>
+			<AppSubmitButton loading={isLoading}>
 				{t('components.auth.signUpForm.buttons.submit')}
-			</button>
-		</form>
+			</AppSubmitButton>
+		</Box>
 	);
 };
 
