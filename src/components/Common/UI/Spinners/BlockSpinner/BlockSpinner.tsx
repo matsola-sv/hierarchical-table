@@ -1,24 +1,24 @@
 import type { FC } from 'react';
 
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, type CircularProgressProps } from '@mui/material';
 
-const BlockSpinner: FC = () => {
+const BlockSpinner: FC<CircularProgressProps> = ({ size = 20, ...rest }) => {
 	return (
 		<Box
 			sx={{
 				position: 'absolute',
-				top: 0,
-				left: 0,
-				width: '100%',
-				height: '100%',
+				inset: 0,
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
-				backgroundColor: 'rgba(255, 255, 255, 0.5)',
-				zIndex: 10,
+				backgroundColor: 'rgba(255, 255, 255, 0.25)',
+				zIndex: 1,
 			}}
 		>
-			<CircularProgress />
+			<CircularProgress
+				size={size}
+				{...rest}
+			/>
 		</Box>
 	);
 };
