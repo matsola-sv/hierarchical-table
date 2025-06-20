@@ -19,7 +19,7 @@ export const useAuth = (): AuthResult => {
 	);
 	const profile = useTypedSelector((state: RootState) => state.profile);
 	const isAuthenticated = Boolean(uid);
-	const isLoadingProfile = profile.isLoading;
+	const isLoadingProfile = profile.loading;
 
 	return {
 		isAuthenticated,

@@ -26,7 +26,7 @@ export const observeAuthState = (dispatch: AppDispatch) => {
 			const isProfileLoading = authService.hasPendingProfile();
 
 			dispatch(setIdentity(identityState));
-			dispatch(setProfile({ user, isLoading: isProfileLoading }));
+			dispatch(setProfile({ user, loading: isProfileLoading }));
 		} else {
 			dispatch(clearIdentityAfterAuth());
 			dispatch(clearProfile());

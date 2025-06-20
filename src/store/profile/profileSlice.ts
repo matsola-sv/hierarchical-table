@@ -4,12 +4,12 @@ import type { User } from '@/models/identity';
 
 interface ProfileState {
 	user: User | null;
-	isLoading: boolean;
+	loading: boolean;
 }
 
 const initialState: ProfileState = {
 	user: null,
-	isLoading: false,
+	loading: false,
 };
 
 const profileSlice = createSlice({
@@ -20,13 +20,13 @@ const profileSlice = createSlice({
 		// The loading flag reflects whether further profile updates are still in progress.
 		setProfile: (state, action: PayloadAction<ProfileState>) => {
 			state.user = action.payload.user;
-			state.isLoading = action.payload.isLoading;
+			state.loading = action.payload.loading;
 		},
 
 		// Applies the updated user profile and marks loading as complete.
 		updateUserProfile: (state, action: PayloadAction<User>) => {
 			state.user = action.payload;
-			state.isLoading = false;
+			state.loading = false;
 		},
 
 		clearProfile() {
