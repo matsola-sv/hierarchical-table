@@ -1,8 +1,22 @@
 # Hierarchical Table
 
-Hierarchical Table built with `[React, TypeScript, Vite, MUI, and Redux]`.
+Hierarchical Table built with `[React, TypeScript, Vite, MUI, Redux, and Firebase]`.
 This component renders a tree-structured table with expandable and collapsible subtables. It supports row deletion along
 with all of their descendants. Designed for scalable presentation of dynamic data with full control over hierarchy and state
+
+## Authentication
+
+User authentication is implemented with Firebase and supports:
+
+- Email/password
+- Google sign-in
+- GitHub sign-in
+
+## 🧰 Additional Tools
+
+- **i18next** — for internationalization
+- **Zod** — for runtime schema validation
+- **react-hook-form** — for form state and validation
 
 ## [Live demo](https://matsola-sv.github.io/hierarchical-table/)
 
@@ -10,9 +24,17 @@ with all of their descendants. Designed for scalable presentation of dynamic dat
 
 ![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot1.png)
 
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot2.png)
+
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot3.png)
+
 ### Mobile version
 
 ![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile1.png)
+
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile2.png)
+
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile3.png)
 
 ## Run Locally
 
