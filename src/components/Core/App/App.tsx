@@ -1,17 +1,19 @@
 import type { FC } from 'react';
 
+import { Box } from '@mui/material';
 import { SnackbarProvider } from 'notistack';
 
 import AppRouter from '@/components/Core/Router/AppRouter';
 
-import './App.css';
-
 const App: FC = () => {
 	return (
 		<SnackbarProvider autoHideDuration={5000}>
-			<div className='App'>
+			<Box
+				className='App'
+				sx={{ textAlign: 'center' }}
+			>
 				<AppRouter />
-			</div>
+			</Box>
 		</SnackbarProvider>
 	);
 };

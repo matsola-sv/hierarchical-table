@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import * as ROUTES from '@/constants/routes';
@@ -9,18 +10,19 @@ import SignUpPage from '@/pages/Auth/SignUp';
 import NotFoundPage from '@/pages/Errors/NotFound';
 import HomePage from '@/pages/Home';
 
+import PageLayout from '@/components/Core/Layouts/PageLayout/PageLayout';
+
 import PublicRoute from './PublicRoute';
 
-function AppRouter() {
-	return (
-		<BrowserRouter basename={getPublicUrl()}>
-			<Routes>
+const AppRouter: FC = () => (
+	<BrowserRouter basename={getPublicUrl()}>
+		<Routes>
+			<Route
+				path={ROUTES.HOME}
+				element={<PageLayout />}
+			>
 				<Route
-					path='*'
-					element={<NotFoundPage />}
-				/>
-				<Route
-					path={ROUTES.HOME}
+					index
 					element={<HomePage />}
 				/>
 				<Route
@@ -39,8 +41,13 @@ function AppRouter() {
 						</PublicRoute>
 					}
 				/>
-			</Routes>
-		</BrowserRouter>
-	);
-}
+				<Route
+					path='*'
+					element={<NotFoundPage />}
+				/>
+			</Route>
+		</Routes>
+	</BrowserRouter>
+);
+
 export default AppRouter;

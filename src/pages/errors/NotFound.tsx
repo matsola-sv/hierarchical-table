@@ -1,14 +1,17 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Box } from '@mui/material';
+
+import EmptyState from '@/components/Common/EmptyState/EmptyState';
+
 const NotFoundPage: FC = () => {
 	const { t } = useTranslation();
 
 	return (
-		<div className='page-not-found'>
-			<h1>:( {t('pages.notFound.message')}</h1>
-			<br />
-		</div>
+		<Box>
+			<EmptyState message={t('pages.notFound.message')} />
+		</Box>
 	);
 };
 export default NotFoundPage;

@@ -37,6 +37,9 @@
 						"exit": "Exit full screen"
 					}
 				}
+			},
+			"header": {
+				"title": "HT App"
 			}
 		},
 		"auth": {
