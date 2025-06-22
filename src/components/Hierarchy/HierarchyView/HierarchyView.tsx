@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 // MUI
-import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, TableContainer, Typography } from '@mui/material';
 
 // Models
 import { IconFontSize } from '@/models/ui';
@@ -82,30 +82,30 @@ const HierarchyView: FC = () => {
 
 	return (
 		<Box
-			margin={0}
-			height='100vh'
+			height='100%'
 			display='flex'
 			flexDirection='column'
 		>
-			{/* Container for the table that fills the available screen height */}
+			{/* Scrollable content (table with sticky header) */}
 			{/* and a fullscreen button in the table's first column */}
-			<Box
+			<TableContainer
+				sx={{ flex: 1, overflow: 'auto' }} // Fill all height. ' Just flex={1} props don't work!
 				ref={tableContainerRef}
-				flex='1' // Fill all height
-				overflow='auto'
 			>
 				<HierarchyTable
 					data={data}
-					stickyHeader={true}
+					stickyHeader
 					headerFirstCell={<FullscreenToggle iconSize={IconFontSize.large} />}
 				/>
-			</Box>
+			</TableContainer>
 
+			{/* Sticky footer button (outside scrollable area) */}
 			{hasMore && !loading && (
 				<Box
 					display='flex'
 					justifyContent='center'
-					mt={1}
+					p={2}
+					borderTop='1px solid #eee'
 				>
 					<Button
 						onClick={handleLoadMore}
