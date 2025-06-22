@@ -70,11 +70,7 @@ export class FirebaseAuthService {
 	}
 
 	async createAccount(email: string, password: string): Promise<User> {
-		const credential = await createUserWithEmailAndPassword(
-			this.auth,
-			email,
-			password,
-		);
+		const credential = await createUserWithEmailAndPassword(this.auth, email, password);
 		return convertToUser(credential.user);
 	}
 
@@ -137,10 +133,7 @@ export function mapFirebaseError(error: unknown): FirebaseError | null {
 /**
  * @param logUnmapped - If true, logs errors without translations that aren’t shown to the user.
  */
-export function parseFirebaseAuthError(
-	error: FirebaseError,
-	logUnmapped = true,
-): IAuthError {
+export function parseFirebaseAuthError(error: FirebaseError, logUnmapped = true): IAuthError {
 	const code = error.code.replace('auth/', '') as AuthErrorCode;
 	const errorInfo = errorMap[code];
 

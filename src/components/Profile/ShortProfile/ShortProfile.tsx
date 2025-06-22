@@ -11,6 +11,7 @@ import { authService } from '@/services/auth/authService';
 
 import AuthLinks from '@/components/Auth/AuthLinks/AuthLinks';
 import BlockSpinner from '@/components/Common/UI/Spinners/BlockSpinner/BlockSpinner';
+import UserAvatar from '@/components/Profile/UserAvatar/UserAvatar';
 
 export const ShortProfile: FC = () => {
 	const { t } = useTranslation();
@@ -51,6 +52,11 @@ export const ShortProfile: FC = () => {
 				overflow: 'hidden',
 			}}
 		>
+			<UserAvatar
+				alt={displayName}
+				src={profile.avatar}
+			/>
+
 			<Typography
 				variant='body1'
 				sx={{

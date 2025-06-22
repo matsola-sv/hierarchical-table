@@ -9,7 +9,7 @@ const NotFoundPage: FC = () => {
 	const { t } = useTranslation();
 
 	return (
-		<Box>
+		<Box sx={{ height: '100%' }}>
 			<EmptyState message={t('pages.notFound.message')} />
 		</Box>
 	);

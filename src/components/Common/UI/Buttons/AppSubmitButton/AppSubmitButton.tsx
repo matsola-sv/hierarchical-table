@@ -1,38 +1,17 @@
 import { type FC } from 'react';
 
-import { Button, type ButtonProps, CircularProgress } from '@mui/material';
+import AppAsyncButton, {
+	type AppAsyncBtnProps,
+} from '@/components/Common/UI/Buttons/AppAsyncButton/AppAsyncButton';
 
-export interface AppSubmitBtnProps extends ButtonProps {
-	loading?: boolean;
-	progressSize?: number;
-}
-
-const AppSubmitButton: FC<AppSubmitBtnProps> = ({
-	children,
-	disabled,
-	loading = false,
-	progressSize = 18,
-	...props
-}) => {
+const AppSubmitButton: FC<AppAsyncBtnProps> = ({ ...props }) => {
 	return (
-		<Button
-			variant='contained'
-			color='primary'
+		<AppAsyncButton
 			type='submit'
-			fullWidth
-			sx={{ mt: 2 }}
-			disabled={disabled || loading}
+			fullWidth={true}
+			sx={{ mt: 2, ...props.sx }}
 			{...props}
-		>
-			{loading && (
-				<CircularProgress
-					size={progressSize}
-					color='inherit'
-					sx={{ mr: 1 }}
-				/>
-			)}
-			{children}
-		</Button>
+		/>
 	);
 };
 

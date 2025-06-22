@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 // MUI
-import { Box, Button, CircularProgress, TableContainer, Typography } from '@mui/material';
+import { Alert, Box, TableContainer } from '@mui/material';
 
 // Models
 import { IconFontSize } from '@/models/ui';
@@ -18,6 +18,8 @@ import { fetchRootNodesChunk } from '@/store/hierarchy/hierarchySlice';
 // Components
 import FullscreenToggle from '@/components/Common/Controls/FullscreenToggle/FullscreenToggle';
 import EmptyState from '@/components/Common/EmptyState/EmptyState';
+import AppAsyncButton from '@/components/Common/UI/Buttons/AppAsyncButton/AppAsyncButton';
+import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner/OverlaySpinner';
 import HierarchyTable from '@/components/Hierarchy/HierarchyTable/HierarchyTable';
 
 const HierarchyView: FC = () => {
@@ -51,29 +53,11 @@ const HierarchyView: FC = () => {
 	};
 
 	if (loading) {
-		return (
-			<Box
-				display='flex'
-				justifyContent='center'
-				alignItems='center'
-				height='100vh'
-			>
-				<CircularProgress />
-			</Box>
-		);
+		return <OverlaySpinner />;
 	}
 
 	if (error) {
-		return (
-			<Box
-				display='flex'
-				justifyContent='center'
-				alignItems='center'
-				height='100vh'
-			>
-				<Typography color='error'>{error}</Typography>
-			</Box>
-		);
+		return <Alert severity='error'>{error}</Alert>;
 	}
 
 	if (!data.length) {
@@ -105,14 +89,17 @@ const HierarchyView: FC = () => {
 					display='flex'
 					justifyContent='center'
 					p={2}
-					borderTop='1px solid #eee'
 				>
-					<Button
-						onClick={handleLoadMore}
-						size='small'
-					>
-						{t('common.buttons.loadMore.title')}
-					</Button>
+					{/* Full-width button on mobile screens */}
+					<Box sx={{ width: { xs: '100%', sm: 'auto' } }}>
+						<AppAsyncButton
+							size='small'
+							onClick={handleLoadMore}
+							fullWidth
+						>
+							{t('common.buttons.loadMore.title')}
+						</AppAsyncButton>
+					</Box>
 				</Box>
 			)}
 		</Box>
