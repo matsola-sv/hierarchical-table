@@ -7,21 +7,18 @@
 			const REDIRECT_KEY = '__REDIRECT_KEY__';
 			const BASE_PATH = '__BASE_PATH__';
 
+			let fullPath = location.pathname + location.search + location.hash;
+			let relative = fullPath.startsWith(BASE_PATH)
+				? fullPath.slice(BASE_PATH.length)
+				: fullPath;
+
 			sessionStorage.setItem(
 				REDIRECT_KEY,
 				location.pathname + location.search + location.hash,
 			);
 
 			// Redirect to base React SPA
-			location.replace(
-				BASE_PATH +
-					'?/' +
-					location.pathname.slice(BASE_PATH.length) +
-					location.search +
-					location.hash,
-			);
-
-			//location.replace(BASE_PATH);
+			location.replace(BASE_PATH);
 		</script>
 	</head>
 	<body>
