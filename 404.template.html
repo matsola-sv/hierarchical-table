@@ -13,7 +13,15 @@
 			);
 
 			// Redirect to base React SPA
-			location.replace(BASE_PATH);
+			location.replace(
+				BASE_PATH +
+					'?/' +
+					location.pathname.slice(BASE_PATH.length) +
+					location.search +
+					location.hash,
+			);
+
+			//location.replace(BASE_PATH);
 		</script>
 	</head>
 	<body>
