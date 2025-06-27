@@ -1,0 +1,101 @@
+{
+	"errors": {
+		"validation": {
+			"required": "{{field}} je povinné.",
+			"min": "{{field}} musí mít alespoň {{min}} znaků.",
+			"max": "{{field}} může mít maximálně {{max}} znaků."
+		},
+		"network": {
+			"generic": "Něco se pokazilo. Zkuste to prosím znovu.",
+			"requestFailed": "Problémy se sítí"
+		},
+		"unknown": "Došlo k neznámé chybě."
+	},
+	"common": {
+		"buttons": {
+			"loadMore": {
+				"title": "Načíst více"
+			}
+		}
+	},
+	"pages": {
+		"notFound": {
+			"message": "Stránka, kterou hledáte, neexistuje."
+		}
+	},
+	"components": {
+		"hierarchy": {
+			"hierarchyView": {
+				"noData": "Odstranili jste celou hierarchii. Obnovte stránku pro její obnovení."
+			}
+		},
+		"common": {
+			"controls": {
+				"fullscreenToggle": {
+					"labels": {
+						"enter": "Celá obrazovka",
+						"exit": "Ukončit režim celé obrazovky"
+					}
+				}
+			},
+			"header": {
+				"title": "HT Appka"
+			}
+		},
+		"auth": {
+			"authLayout": {
+				"or": "NEBO"
+			},
+			"providerAuth": {
+				"title": "Přihlásit se pomocí",
+				"buttons": {
+					"google": "Pokračovat přes Google",
+					"github": "Pokračovat přes GitHub"
+				}
+			},
+			"signUpForm": {
+				"title": "Vytvořte si účet",
+				"displayName": {
+					"title": "Zobrazované jméno",
+					"placeholder": "Peter Wozniak"
+				},
+				"email": "Email",
+				"password": "Heslo",
+				"confirmPassword": "Zopakujte heslo",
+				"buttons": {
+					"submit": "Registrovat se"
+				},
+				"errors": {
+					"confirmPassword": {
+						"match": "Hesla se musí shodovat."
+					},
+					"email": {
+						"alreadyUse": "Tento email je již používán."
+					}
+				}
+			},
+			"signInForm": {
+				"title": "Přihlaste se ke svému účtu",
+				"errors": {
+					"email": {
+						"invalid": "Neplatná e-mailová adresa.",
+						"accountExists": "Účet s tímto emailem {{email}} již existuje přes jiný způsob přihlášení. Použijte prosím původního poskytovatele."
+					},
+					"invalidCredential": "Nesprávné heslo nebo email."
+				}
+			},
+			"authLinks": {
+				"signIn": "Přihlásit se",
+				"signUp": "Zaregistrovat se"
+			}
+		},
+		"profile": {
+			"defaultName": "Uživatel",
+			"shortProfile": {
+				"buttons": {
+					"signOut": "Odhlásit se"
+				}
+			}
+		}
+	}
+}

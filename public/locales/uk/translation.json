@@ -1,0 +1,101 @@
+{
+	"errors": {
+		"validation": {
+			"required": "Поле {{field}} є обовʼязковим.",
+			"min": "Поле {{field}} має містити щонайменше {{min}} символів.",
+			"max": "Поле {{field}} може містити не більше ніж {{max}} символів."
+		},
+		"network": {
+			"generic": "Щось пішло не так. Спробуйте ще раз.",
+			"requestFailed": "Проблеми з мережею"
+		},
+		"unknown": "Виникла невідома помилка."
+	},
+	"common": {
+		"buttons": {
+			"loadMore": {
+				"title": "Завантажити ще"
+			}
+		}
+	},
+	"pages": {
+		"notFound": {
+			"message": "Сторінку, яку ви шукаєте, не знайдено."
+		}
+	},
+	"components": {
+		"hierarchy": {
+			"hierarchyView": {
+				"noData": "Ви видалили всю ієрархію. Оновіть сторінку, щоб відновити її."
+			}
+		},
+		"common": {
+			"controls": {
+				"fullscreenToggle": {
+					"labels": {
+						"enter": "На весь екран",
+						"exit": "Вийти з повноекранного режиму"
+					}
+				}
+			},
+			"header": {
+				"title": "HT Додаток"
+			}
+		},
+		"auth": {
+			"authLayout": {
+				"or": "АБО"
+			},
+			"providerAuth": {
+				"title": "Увійти за допомогою",
+				"buttons": {
+					"google": "Продовжити через Google",
+					"github": "Продовжити через GitHub"
+				}
+			},
+			"signUpForm": {
+				"title": "Створіть обліковий запис",
+				"displayName": {
+					"title": "Ім’я для відображення",
+					"placeholder": "Петро Возняк"
+				},
+				"email": "Email",
+				"password": "Пароль",
+				"confirmPassword": "Повторіть пароль",
+				"buttons": {
+					"submit": "Зареєструватися"
+				},
+				"errors": {
+					"confirmPassword": {
+						"match": "Паролі мають збігатися."
+					},
+					"email": {
+						"alreadyUse": "Цей email уже використовується."
+					}
+				}
+			},
+			"signInForm": {
+				"title": "Увійдіть у свій обліковий запис",
+				"errors": {
+					"email": {
+						"invalid": "Некоректна email-адреса.",
+						"accountExists": "Обліковий запис із цією адресою {{email}} вже існує з іншим методом входу. Скористайтесь початковим провайдером."
+					},
+					"invalidCredential": "Невірний email або пароль."
+				}
+			},
+			"authLinks": {
+				"signIn": "Увійти",
+				"signUp": "Зареєструватися"
+			}
+		},
+		"profile": {
+			"defaultName": "Користувач",
+			"shortProfile": {
+				"buttons": {
+					"signOut": "Вийти"
+				}
+			}
+		}
+	}
+}
