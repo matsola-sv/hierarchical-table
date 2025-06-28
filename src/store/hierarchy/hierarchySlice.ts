@@ -1,7 +1,6 @@
 import { type PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { type HierarchyState } from './hierarchy.types';
-import { type TreeModelNode } from '@/models/tree';
+import { type HierarchyItem, type HierarchyState } from './hierarchy.types';
 
 import { getPublicUrl } from '@/utils/url';
 
@@ -14,7 +13,7 @@ import { cloneTreeExcludingNode } from '@/services/treeService';
  * reducing the load on Redux and avoiding storing large structures in the state.
  * The service also provides access to the tree and allows fetching child nodes.
  */
-const hierarchyService = new HierarchyService<any>(
+const hierarchyService = new HierarchyService<HierarchyItem>(
 	getPublicUrl('/database/example-large-data.json'),
 );
 
@@ -30,9 +29,13 @@ export const fetchRootNodesChunk = createAsyncThunk(
 	async ({ offset }: { offset: number }, { rejectWithValue, getState }) => {
 		try {
 			// getState() returns the entire Redux state, so we need to specify the type to access the specific 'hierarchy'.
-			const { limit } = (getState() as { hierarchy: HierarchyState<any> }).hierarchy
+			const { limit } = (getState() as { hierarchy: HierarchyState }).hierarchy
 				.pagination;
-			const result: SearchResult<any> = await hierarchyService.getChildren(0, offset, limit);
+			const result: SearchResult<HierarchyItem> = await hierarchyService.getChildren(
+				0,
+				offset,
+				limit,
+			);
 
 			return { ...result, offset };
 		} catch (err: any) {
@@ -49,17 +52,17 @@ export const removeHierarchyBranchAsync = createAsyncThunk(
 	async (nodeId: number, { getState, rejectWithValue }) => {
 		try {
 			// getState() returns the entire Redux state, so we need to specify the type to access the specific 'hierarchy'.
-			const { hierarchy } = getState() as { hierarchy: HierarchyState<any> };
+			const { hierarchy } = getState() as { hierarchy: HierarchyState };
 
 			// Clones the hierarchical tree, excluding the node that needs to be removed.
-			return cloneTreeExcludingNode<TreeModelNode<any>>(hierarchy.data, nodeId);
+			return cloneTreeExcludingNode<HierarchyItem>(hierarchy.data, nodeId);
 		} catch {
 			return rejectWithValue('Failed to remove hierarchy branch');
 		}
 	},
 );
 
-const initialState: HierarchyState<any> = {
+const initialState: HierarchyState = {
 	data: [],
 	loading: false,
 	error: null,
@@ -81,8 +84,12 @@ const hierarchySlice = createSlice({
 		// Even if only a small part (e.g. `loading`) changes, it triggers re-renders due to a new reference.
 		// TODO Temp avoid async node removal — thunk updates entire state and collapses sub tables.
 		removeHierarchyBranch(state, action: PayloadAction<number>) {
+			if (state.data.length > 0) {
+				console.log('+rem', state.data[0].model.id, state.data[0].model.data);
+			}
+
 			// Returns a clone of the hierarchical tree with the node to be removed (and its descendants) excluded.
-			state.data = cloneTreeExcludingNode<TreeModelNode<any>>(state.data, action.payload);
+			state.data = cloneTreeExcludingNode<HierarchyItem>(state.data, action.payload);
 		},
 	},
 	extraReducers: builder => {
