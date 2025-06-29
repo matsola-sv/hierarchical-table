@@ -6,60 +6,89 @@ import { initI18n } from '@/core/i18n';
 
 import { getPublicUrl } from '@/utils/url';
 
-/** Storage key for current app language */
-const LANG_KEY = 'appLanguage';
+export type LangChangeHandler = (lng: AppLanguage) => void;
 
-const isAppLanguage = (value: unknown): value is AppLanguage => {
-	return Object.values(AppLanguage).includes(value as AppLanguage);
-};
+export const languageService = (() => {
+	const storageKey = 'appLanguage'; // Language key in localStorage
+	const handlers = new Map<LangChangeHandler, LangChangeHandler>();
 
-const saveLanguage = (lng: AppLanguage): void => {
-	localStorage.setItem(LANG_KEY, lng);
-};
+	const isAppLanguage = (value: unknown): value is AppLanguage => {
+		return Object.values(AppLanguage).includes(value as AppLanguage);
+	};
 
-const getSaveLanguage = (): string | null => {
-	return localStorage.getItem(LANG_KEY);
-};
+	const saveLanguage = (lng: AppLanguage): void => {
+		localStorage.setItem(storageKey, lng);
+	};
 
-const detectInitialLanguage = (): AppLanguage => {
-	const saved = getSaveLanguage();
-	const browserLang = navigator.language.split('-')[0];
+	const getSavedLanguage = (): string | null => {
+		return localStorage.getItem(storageKey);
+	};
 
-	if (isAppLanguage(saved)) return saved;
-	if (isAppLanguage(browserLang)) return browserLang;
+	const detectInitialLanguage = (): AppLanguage => {
+		const saved = getSavedLanguage();
+		const browserLang = navigator.language.split('-')[0];
 
-	return AppLanguage.en;
-};
+		if (isAppLanguage(saved)) return saved;
+		if (isAppLanguage(browserLang)) return browserLang;
 
-export const languageService = {
-	/** Initialize i18next with detected or default language. */
-	init: async (defaultLng?: AppLanguage) => {
-		const lng = defaultLng ?? detectInitialLanguage();
+		return AppLanguage.en;
+	};
 
-		// Init i18next singleton instance
-		// fallbackLng - fallback language if translation is missing
-		await initI18n({
-			defaultLng: lng,
-			fallbackLng: AppLanguage.en,
-			loadPath: getPublicUrl('locales/{{lng}}/{{ns}}.json'),
-		});
+	return {
+		/** Initialize i18next with detected or default language. */
+		init: async (defaultLng?: AppLanguage): Promise<void> => {
+			const lng = defaultLng ?? detectInitialLanguage();
 
-		saveLanguage(lng);
-	},
+			// Init i18next singleton instance
+			// fallbackLng - fallback language if translation is missing
+			await initI18n({
+				defaultLng: lng,
+				fallbackLng: AppLanguage.en,
+				loadPath: getPublicUrl('locales/{{lng}}/{{ns}}.json'),
+			});
 
-	/** Change current language and persist it. */
-	changeLanguage: async (lng: AppLanguage): Promise<AppLanguage> => {
-		await i18n.changeLanguage(lng);
-		saveLanguage(lng);
+			saveLanguage(lng);
+		},
 
-		return lng;
-	},
+		/** Returns the list of available application languages. */
+		getLanguages: (): AppLanguage[] => {
+			return Object.values(AppLanguage);
+		},
 
-	/**
-	 * Return current language.
-	 * Guaranteed to be valid since it's set only via this service.
-	 */
-	getCurrent: (): AppLanguage => {
-		return i18n.language as AppLanguage;
-	},
-};
+		/**
+		 * Return current language.
+		 * Guaranteed to be valid since it's set only via this service.
+		 */
+		getCurrent: (): AppLanguage => {
+			return i18n.language as AppLanguage;
+		},
+
+		/** Update current language and persist it. */
+		changeLanguage: async (lng: AppLanguage): Promise<AppLanguage> => {
+			await i18n.changeLanguage(lng);
+			saveLanguage(lng);
+
+			return lng;
+		},
+
+		/** Subscribe to language change. */
+		onChange: (callback: LangChangeHandler): void => {
+			const wrapped: LangChangeHandler = (lng: AppLanguage) => {
+				if (isAppLanguage(lng)) callback(lng);
+			};
+
+			handlers.set(callback, wrapped);
+			i18n.on('languageChanged', wrapped);
+		},
+
+		/** Unsubscribe from language change. */
+		offChange: (callback: LangChangeHandler): void => {
+			const wrapped = handlers.get(callback);
+
+			if (wrapped) {
+				i18n.off('languageChanged', wrapped);
+				handlers.delete(callback);
+			}
+		},
+	};
+})();
