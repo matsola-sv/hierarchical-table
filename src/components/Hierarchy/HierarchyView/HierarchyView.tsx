@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { Alert, Box, TableContainer } from '@mui/material';
 
 // Models
-import { IconFontSize } from '@/models/ui';
 
 // Hooks
 import { useTypedSelector } from '@/hooks/useTypedSelector';
@@ -79,7 +78,13 @@ const HierarchyView: FC = () => {
 				<HierarchyTable
 					data={data}
 					stickyHeader
-					headerFirstCell={<FullscreenToggle iconSize={IconFontSize.large} />}
+					headerFirstCell={
+						<FullscreenToggle
+							iconSx={{
+								fontSize: { xs: 35, lg: 40 },
+							}}
+						/>
+					}
 				/>
 			</TableContainer>
 

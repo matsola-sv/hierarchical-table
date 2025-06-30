@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-// MUI
 import { IconButton, Tooltip } from '@mui/material';
 
 // Models
@@ -13,19 +12,22 @@ import { IconFontSize } from '@/models/ui';
 // Hooks
 import useFullscreen from '@/hooks/fullscreen/useFullscreen';
 
-const FullscreenToggle: FC<FullscreenToggleProps> = props => {
+const FullscreenToggle: FC<FullscreenToggleProps> = iconProps => {
 	const { t } = useTranslation();
+	const { isFullscreen, toggleFullscreen, isFullscreenSupported } = useFullscreen();
+
+	// Collect all other props in `...rest` to forward them unchanged
 	const {
-		isDisabled = false,
+		iconSx,
+		disabled = false,
+		size = IconFontSize.medium,
 		isHideIfUnsupported = false,
-		iconSize = IconFontSize.medium,
 		labels = {
 			enter: t('components.common.controls.fullscreenToggle.labels.enter'),
 			exit: t('components.common.controls.fullscreenToggle.labels.exit'),
 		},
-	} = props;
-
-	const { isFullscreen, toggleFullscreen, isFullscreenSupported } = useFullscreen();
+		...rest
+	} = iconProps;
 
 	if (isHideIfUnsupported && !isFullscreenSupported) {
 		return null;
@@ -39,12 +41,19 @@ const FullscreenToggle: FC<FullscreenToggleProps> = props => {
 				color='primary'
 				aria-label={label}
 				onClick={toggleFullscreen}
-				disabled={isDisabled}
+				disabled={disabled}
+				{...rest} // All other props not used explicitly in iconProps
 			>
 				{isFullscreen ? (
-					<FullscreenExitIcon fontSize={iconSize} />
+					<FullscreenExitIcon
+						fontSize={size}
+						sx={iconSx}
+					/>
 				) : (
-					<FullscreenIcon fontSize={iconSize} />
+					<FullscreenIcon
+						fontSize={size}
+						sx={iconSx}
+					/>
 				)}
 			</IconButton>
 		</Tooltip>
