@@ -37,9 +37,6 @@
 						"exit": "Ukončit režim celé obrazovky"
 					}
 				}
-			},
-			"header": {
-				"title": "HT Appka"
 			}
 		},
 		"auth": {

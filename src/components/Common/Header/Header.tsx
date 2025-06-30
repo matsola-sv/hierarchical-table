@@ -1,13 +1,10 @@
 import type { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Toolbar } from '@mui/material';
 
 import type { ResponsiveValues } from '@/models/ui';
 
-import * as ROUTES from '@/constants/routes';
-
+import Logo from '@/components/Common/Logo/Logo';
 import ShortProfile from '@/components/Profile/ShortProfile/ShortProfile';
 
 export interface HeaderProps {
@@ -15,8 +12,6 @@ export interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ height }) => {
-	const { t } = useTranslation();
-
 	return (
 		<AppBar
 			position='fixed'
@@ -30,19 +25,13 @@ const Header: FC<HeaderProps> = ({ height }) => {
 					px: 2,
 				}}
 			>
-				{/* Logo in left part */}
-				<Typography
-					variant='h6'
-					component={Link}
-					to={ROUTES.HOME}
-					sx={{ textDecoration: 'none', color: 'inherit' }}
-				>
-					{t('components.common.header.title')}
-				</Typography>
+				{/* Left part */}
+				<Logo />
 
+				{/* Right part */}
 				<Box
 					sx={{
-						flexBasis: { xs: '50%', sm: '30%' },
+						flexBasis: { xs: '60%', sm: '30%' },
 						display: 'flex',
 						justifyContent: 'flex-end',
 						alignItems: 'center',

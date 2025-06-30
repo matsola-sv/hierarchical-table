@@ -1,11 +1,16 @@
 {
-	"short_name": "Hierarchical Table",
+	"short_name": "Hierarchy",
 	"name": "Hierarchical Table",
 	"icons": [
 		{
 			"src": "images/vite.svg",
 			"type": "image/svg+xml",
 			"sizes": "any"
+		},
+		{
+			"src": "images/favicon.svg",
+			"type": "image/svg+xml",
+			"sizes": "16x16"
 		}
 	],
 	"start_url": ".",
