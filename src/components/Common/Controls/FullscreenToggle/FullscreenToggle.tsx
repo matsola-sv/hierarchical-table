@@ -6,8 +6,8 @@ import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 // MUI
 import { IconButton, Tooltip } from '@mui/material';
 
-import { type FullscreenToggleProps } from '@/components/Common/Controls/FullscreenToggle/FullscreenToggle.types';
 // Models
+import { type FullscreenToggleProps } from '@/components/Common/Controls/FullscreenToggle/FullscreenToggle.types';
 import { IconFontSize } from '@/models/ui';
 
 // Hooks

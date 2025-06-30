@@ -73,6 +73,9 @@
 			},
 			"signInForm": {
 				"title": "Увійдіть у свій обліковий запис",
+				"buttons": {
+					"submit": "Увійти"
+				},
 				"errors": {
 					"email": {
 						"invalid": "Некоректний email.",

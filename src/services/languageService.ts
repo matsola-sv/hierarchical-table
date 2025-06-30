@@ -1,6 +1,8 @@
 import i18n from 'i18next';
 
-import { AppLanguage } from '@/models/language';
+import { AppLanguage, type LanguageMeta } from '@/models/language';
+
+import { LANGUAGES_META } from '@/constants/languages';
 
 import { initI18n } from '@/core/i18n';
 
@@ -61,6 +63,15 @@ export const languageService = (() => {
 		 */
 		getCurrent: (): AppLanguage => {
 			return i18n.language as AppLanguage;
+		},
+
+		getLanguageMeta: (lng: AppLanguage): LanguageMeta => {
+			const meta = LANGUAGES_META[lng];
+
+			if (!meta) {
+				throw new Error(`Language metadata not found for language: ${lng}`);
+			}
+			return meta;
 		},
 
 		/** Update current language and persist it. */

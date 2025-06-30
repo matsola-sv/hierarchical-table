@@ -4,6 +4,7 @@ import { AppBar, Box, Toolbar } from '@mui/material';
 
 import type { ResponsiveValues } from '@/models/ui';
 
+import LangSwitcher from '@/components/AppFeatures/LangSwitcher/LangSwitcher';
 import Logo from '@/components/Common/Logo/Logo';
 import ShortProfile from '@/components/Profile/ShortProfile/ShortProfile';
 
@@ -37,6 +38,7 @@ const Header: FC<HeaderProps> = ({ height }) => {
 						alignItems: 'center',
 					}}
 				>
+					<LangSwitcher />
 					<ShortProfile />
 				</Box>
 			</Toolbar>

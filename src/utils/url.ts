@@ -15,3 +15,11 @@ export const getPublicUrl = (path?: string): string => {
 	const separator = path.startsWith('/') ? '' : '/';
 	return `${publicUrl}${separator}${path}`;
 };
+
+/**
+ * Returns a relative path inside the "public/images" folder.
+ * Example: getPublicImage('flags/ua.svg') → 'public/images/flags/ua.svg'
+ */
+export const getPublicImage = (path: string): string => {
+	return getPublicUrl(`images/${path}`);
+};
