@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { useAuth } from '@/hooks/useAuth';
 
@@ -11,6 +11,7 @@ import { authService } from '@/services/auth/authService';
 
 import AuthLinks from '@/components/Auth/AuthLinks/AuthLinks';
 import BlockSpinner from '@/components/Common/UI/Spinners/BlockSpinner/BlockSpinner';
+import LogoutButton from '@/components/Profile/LogoutButton/LogoutButton';
 import UserAvatar from '@/components/Profile/UserAvatar/UserAvatar';
 
 export const ShortProfile: FC = () => {
@@ -34,7 +35,6 @@ export const ShortProfile: FC = () => {
 	}
 
 	const displayName: string = getDisplayName(profile?.displayName, t);
-	const logoutBtnSize = isMobile ? 'small' : 'medium';
 
 	const handleLogout = async () => {
 		await authService.signOut();
@@ -57,32 +57,22 @@ export const ShortProfile: FC = () => {
 				src={profile.avatar}
 			/>
 
-			<Typography
-				variant='body1'
-				sx={{
-					fontSize: { xs: '0.85rem', sm: '1rem' },
-					whiteSpace: 'nowrap',
-					overflow: 'hidden',
-					textOverflow: 'ellipsis',
-					maxWidth: { xs: 100, sm: 160 },
-				}}
-			>
-				{displayName}
-			</Typography>
+			{!isMobile && (
+				<Typography
+					variant='body1'
+					sx={{
+						fontSize: { xs: '0.85rem', sm: '1rem' },
+						whiteSpace: 'nowrap',
+						overflow: 'hidden',
+						textOverflow: 'ellipsis',
+						maxWidth: { xs: 100, sm: 160 },
+					}}
+				>
+					{displayName}
+				</Typography>
+			)}
 
-			<Button
-				onClick={handleLogout}
-				variant='outlined'
-				color='inherit'
-				size={logoutBtnSize}
-				sx={{
-					fontSize: { xs: '0.7rem', sm: '0.85rem' },
-					textTransform: 'none',
-					whiteSpace: 'nowrap',
-				}}
-			>
-				{t('components.profile.shortProfile.buttons.signOut')}
-			</Button>
+			<LogoutButton onClick={handleLogout} />
 		</Box>
 	);
 };
