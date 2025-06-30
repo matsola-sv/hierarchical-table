@@ -73,6 +73,9 @@
 			},
 			"signInForm": {
 				"title": "Sign in to your account",
+				"buttons": {
+					"submit": "Sign In"
+				},
 				"errors": {
 					"email": {
 						"invalid": "Invalid email address.",

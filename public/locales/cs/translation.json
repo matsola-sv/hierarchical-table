@@ -6,8 +6,8 @@
 			"max": "{{field}} může mít maximálně {{max}} znaků."
 		},
 		"network": {
-			"generic": "Něco se pokazilo. Zkuste to prosím znovu.",
-			"requestFailed": "Problémy se sítí"
+			"generic": "Něco se pokazilo. Zkuste znovu.",
+			"requestFailed": "Problémy se sítí."
 		},
 		"unknown": "Došlo k neznámé chybě."
 	},
@@ -26,7 +26,7 @@
 	"components": {
 		"hierarchy": {
 			"hierarchyView": {
-				"noData": "Odstranili jste celou hierarchii. Obnovte stránku pro její obnovení."
+				"noData": "Hierarchie byla odstraněna. Obnovte stránku."
 			}
 		},
 		"common": {
@@ -34,7 +34,7 @@
 				"fullscreenToggle": {
 					"labels": {
 						"enter": "Celá obrazovka",
-						"exit": "Ukončit režim celé obrazovky"
+						"exit": "Ukončit režim"
 					}
 				}
 			}
@@ -72,25 +72,28 @@
 				}
 			},
 			"signInForm": {
-				"title": "Přihlaste se ke svému účtu",
+				"title": "Přihlaste se k účtu",
+				"buttons": {
+					"submit": "Přihlaste se"
+				},
 				"errors": {
 					"email": {
-						"invalid": "Neplatná e-mailová adresa.",
-						"accountExists": "Účet s tímto emailem {{email}} již existuje přes jiný způsob přihlášení. Použijte prosím původního poskytovatele."
+						"invalid": "Neplatný email.",
+						"accountExists": "Účet s {{email}} už existuje a je používán jiným způsobem."
 					},
 					"invalidCredential": "Nesprávné heslo nebo email."
 				}
 			},
 			"authLinks": {
-				"signIn": "Přihlásit se",
-				"signUp": "Zaregistrovat se"
+				"signIn": "Přihlášení",
+				"signUp": "Registrace"
 			}
 		},
 		"profile": {
 			"defaultName": "Uživatel",
 			"shortProfile": {
 				"buttons": {
-					"signOut": "Odhlásit se"
+					"signOut": "Odhlásit"
 				}
 			}
 		}

@@ -72,7 +72,7 @@ const SignInForm = () => {
 			/>
 
 			<AppSubmitButton loading={isLoading}>
-				{t('components.auth.signUpForm.buttons.submit')}
+				{t('components.auth.signInForm.buttons.submit')}
 			</AppSubmitButton>
 		</Box>
 	);
