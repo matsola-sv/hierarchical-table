@@ -31,11 +31,13 @@ const FullscreenToggle: FC<FullscreenToggleProps> = props => {
 		return null;
 	}
 
+	const label = isFullscreen ? labels.exit : labels.enter;
+
 	return (
-		<Tooltip title={labels.enter}>
+		<Tooltip title={label}>
 			<IconButton
 				color='primary'
-				aria-label={isFullscreen ? labels.exit : labels.enter}
+				aria-label={label}
 				onClick={toggleFullscreen}
 				disabled={isDisabled}
 			>
