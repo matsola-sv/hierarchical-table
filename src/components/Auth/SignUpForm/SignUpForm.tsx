@@ -10,6 +10,8 @@ import { type SignUpFormFields, signUpSchema } from './SignUpForm.schema';
 
 import { useAuthFormError } from '@/hooks/useAuthFormError';
 
+import { createRandomAvatarUrl, getDisplayName } from '@/utils/profile';
+
 import { authService } from '@/services/auth/authService';
 
 import { type AppDispatch } from '@/store';
@@ -53,6 +55,7 @@ const SignUpForm = () => {
 
 			const userUpdated = await authService.updateProfile(user.id, {
 				displayName: data.displayName,
+				avatar: createRandomAvatarUrl(getDisplayName(data.displayName, t)),
 			});
 			// Update authorization state (DisplayName)
 			dispatch(updateUserProfile(userUpdated));
