@@ -28,6 +28,10 @@ User authentication is implemented with Firebase and supports:
 
 ![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot3.png)
 
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot4.png)
+
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot5.png)
+
 ### Mobile version
 
 ![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile1.png)
@@ -35,6 +39,10 @@ User authentication is implemented with Firebase and supports:
 ![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile2.png)
 
 ![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile3.png)
+
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile4.png)
+
+![Screenshot](https://raw.githubusercontent.com/matsola-sv/hierarchical-table/master/docs/screenshots/Screenshot-mobile5.png)
 
 ## Run Locally
 
