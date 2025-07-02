@@ -1,8 +1,7 @@
 # Hierarchical Table
 
-Hierarchical Table built with `[React, TypeScript, Vite, MUI, Redux, and Firebase]`.
-This component renders a tree-structured table with expandable and collapsible subtables. It supports row deletion along
-with all of their descendants. Designed for scalable presentation of dynamic data with full control over hierarchy and state
+Hierarchical Table built with `[React, TypeScript, Vite, MUI, Redux, and Firebase]`. This component renders a tree-structured table with expandable and collapsible subtables. 
+It supports row deletion along with all of their descendants. Designed for scalable presentation of dynamic data with full control over hierarchy and state. Includes built-in localization support for multilingual interfaces.
 
 ## Authentication
 
