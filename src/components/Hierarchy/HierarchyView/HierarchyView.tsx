@@ -5,13 +5,12 @@ import { useDispatch } from 'react-redux';
 // MUI
 import { Alert, Box, TableContainer } from '@mui/material';
 
-// Models
-
 // Hooks
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 
 // Redux
 import { type AppDispatch } from '@/store';
+import { selectHierarchy } from '@/store/hierarchy/hierarchySelectors';
 import { fetchRootNodesChunk } from '@/store/hierarchy/hierarchySlice';
 
 // Components
@@ -26,8 +25,8 @@ const HierarchyView: FC = () => {
 
 	const { t } = useTranslation();
 	const dispatch = useDispatch<AppDispatch>();
-	const { data, loading, error } = useTypedSelector(state => state.hierarchy);
-	const { loadedRootCount, hasMore } = useTypedSelector(state => state.hierarchy.pagination);
+	const { data, loading, error, pagination } = useTypedSelector(selectHierarchy);
+	const { loadedRootCount, hasMore } = pagination;
 
 	const noDataMessage: string = t('components.hierarchy.hierarchyView.noData');
 
