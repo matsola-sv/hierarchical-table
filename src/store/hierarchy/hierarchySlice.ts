@@ -1,11 +1,20 @@
 import { type PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { type HierarchyItem, type HierarchyState } from './hierarchy.types';
+import type {
+	FetchArgs,
+	FetchNodesConditionFn,
+	FetchNodesFn,
+	FetchResult,
+	HierarchyItem,
+	HierarchyState,
+	HierarchyThunk,
+} from './hierarchy.types';
 
+import { normalizeError } from '@/utils/error';
 import { getPublicUrl } from '@/utils/url';
 
 // Services and utils
-import HierarchyService, { type SearchResult } from '@/services/hierarchyService';
+import HierarchyService from '@/services/hierarchyService';
 import { cloneTreeExcludingNode } from '@/services/treeService';
 
 /**
@@ -24,42 +33,36 @@ const hierarchyService = new HierarchyService<HierarchyItem>(
  * In other cases — the next batch of nodes is loaded (e.g., on scroll).
  * Returns an array of nodes, total count, and the current offset.
  */
-export const fetchRootNodesChunk = createAsyncThunk(
-	'hierarchy/fetchRootNodes',
-	async ({ offset }: { offset: number }, { rejectWithValue, getState }) => {
-		try {
-			// getState() returns the entire Redux state, so we need to specify the type to access the specific 'hierarchy'.
-			const { limit } = (getState() as { hierarchy: HierarchyState }).hierarchy
-				.pagination;
-			const result: SearchResult<HierarchyItem> = await hierarchyService.getChildren(
-				0,
-				offset,
-				limit,
-			);
+const fetchRootNodes: FetchNodesFn = async (args, { getState, rejectWithValue }) => {
+	try {
+		const { offset, parentId = 0 } = args;
+		const { limit } = getState().hierarchy.pagination;
+		const result = await hierarchyService.getChildren(parentId, offset, limit);
 
-			return { ...result, offset };
-		} catch (err: any) {
-			return rejectWithValue(err.message);
-		}
-	},
-);
+		return { ...result, offset: offset };
+	} catch (err: unknown) {
+		return rejectWithValue(normalizeError(err, '[fetchHierarchy]: unknown error').message);
+	}
+};
 
 /**
- * Returns a clone of the hierarchical tree with the node to be removed (and its descendants) excluded.
+ * Condition to run the thunk: returns true to proceed with fetching, false to skip.
+ * Prevents duplicate loads by checking if loading is in progress or data chunk already loaded.
  */
-export const removeHierarchyBranchAsync = createAsyncThunk(
-	'hierarchy/removeHierarchyBranchAsync',
-	async (nodeId: number, { getState, rejectWithValue }) => {
-		try {
-			// getState() returns the entire Redux state, so we need to specify the type to access the specific 'hierarchy'.
-			const { hierarchy } = getState() as { hierarchy: HierarchyState };
+const fetchNodesCondition: FetchNodesConditionFn = ({ offset }, { getState }) => {
+	const { loading, pagination } = getState().hierarchy;
+	const { limit, loadedRootCount } = pagination;
 
-			// Clones the hierarchical tree, excluding the node that needs to be removed.
-			return cloneTreeExcludingNode<HierarchyItem>(hierarchy.data, nodeId);
-		} catch {
-			return rejectWithValue('Failed to remove hierarchy branch');
-		}
-	},
+	if (loading) return false;
+	if (offset + limit <= loadedRootCount) return false;
+
+	return true;
+};
+
+export const fetchRootNodesThunk = createAsyncThunk<FetchResult, FetchArgs, HierarchyThunk>(
+	'hierarchy/fetchRootNodes',
+	fetchRootNodes,
+	{ condition: fetchNodesCondition },
 );
 
 const initialState: HierarchyState = {
@@ -84,10 +87,6 @@ const hierarchySlice = createSlice({
 		// Even if only a small part (e.g. `loading`) changes, it triggers re-renders due to a new reference.
 		// TODO Temp avoid async node removal — thunk updates entire state and collapses sub tables.
 		removeHierarchyBranch(state, action: PayloadAction<number>) {
-			if (state.data.length > 0) {
-				console.log('+rem', state.data[0].model.id, state.data[0].model.data);
-			}
-
 			// Returns a clone of the hierarchical tree with the node to be removed (and its descendants) excluded.
 			state.data = cloneTreeExcludingNode<HierarchyItem>(state.data, action.payload);
 		},
@@ -95,10 +94,10 @@ const hierarchySlice = createSlice({
 	extraReducers: builder => {
 		builder
 			// Loading root nodes for hierarchical data
-			.addCase(fetchRootNodesChunk.pending, state => {
+			.addCase(fetchRootNodesThunk.pending, state => {
 				state.loading = true;
 			})
-			.addCase(fetchRootNodesChunk.fulfilled, (state, action) => {
+			.addCase(fetchRootNodesThunk.fulfilled, (state, action) => {
 				const { nodes, totalCount, offset } = action.payload;
 
 				if (offset === 0) {
@@ -112,7 +111,7 @@ const hierarchySlice = createSlice({
 				state.pagination.hasMore = state.pagination.loadedRootCount < totalCount;
 				state.loading = false;
 			})
-			.addCase(fetchRootNodesChunk.rejected, (state, action) => {
+			.addCase(fetchRootNodesThunk.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.error.message || 'Failed to load root nodes';
 			});

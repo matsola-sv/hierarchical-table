@@ -11,7 +11,7 @@ import { useTypedSelector } from '@/hooks/useTypedSelector';
 // Redux
 import { type AppDispatch } from '@/store';
 import { selectHierarchy } from '@/store/hierarchy/hierarchySelectors';
-import { fetchRootNodesChunk } from '@/store/hierarchy/hierarchySlice';
+import { fetchRootNodesThunk } from '@/store/hierarchy/hierarchySlice';
 
 // Components
 import FullscreenToggle from '@/components/Common/Controls/FullscreenToggle/FullscreenToggle';
@@ -32,7 +32,7 @@ const HierarchyView: FC = () => {
 
 	// Loads the first chunk of rows for the root hierarchy table.
 	useEffect(() => {
-		dispatch(fetchRootNodesChunk({ offset: 0 }));
+		dispatch(fetchRootNodesThunk({ offset: 0 }));
 	}, [dispatch]);
 
 	// After loading new data, scroll smoothly to the end of the table
@@ -47,7 +47,7 @@ const HierarchyView: FC = () => {
 		const offset = loadedRootCount;
 
 		// Loads the next chunk of rows for the root hierarchy table
-		dispatch(fetchRootNodesChunk({ offset }));
+		dispatch(fetchRootNodesThunk({ offset }));
 	};
 
 	if (loading) {
