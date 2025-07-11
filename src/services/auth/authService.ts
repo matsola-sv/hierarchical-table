@@ -38,29 +38,7 @@ export class AuthService implements IAuthService {
 		this.provider = provider;
 	}
 
-	private setPendingProfile(): void {
-		this.isPendingProfile = true;
-	}
-
-	/**
-	 * Clears the flag that indicates a pending profile update.
-	 * Called after the profile is updated or during sign-out.
-	 */
-	private clearPendingProfile(): void {
-		this.isPendingProfile = false;
-	}
-
-	private applyAuthOptions(options?: IAuthOptions): void {
-		if (options?.isProfilePending) {
-			this.setPendingProfile();
-		}
-	}
-
-	async createAccount(
-		email: string,
-		password: string,
-		options?: IAuthOptions,
-	): Promise<User> {
+	createAccount(email: string, password: string, options?: IAuthOptions): Promise<User> {
 		// Options must be applied before account creation,
 		// otherwise the auth listener may trigger before they take effect.
 		this.applyAuthOptions(options);
@@ -68,19 +46,19 @@ export class AuthService implements IAuthService {
 		return this.provider.createAccount(email, password, options);
 	}
 
-	async signIn(email: string, password: string): Promise<User> {
+	signIn(email: string, password: string): Promise<User> {
 		return this.provider.signIn(email, password);
 	}
 
-	async signInWithGoogle(): Promise<User> {
+	signInWithGoogle(): Promise<User> {
 		return this.provider.signInWithGoogle();
 	}
 
-	async signInWithGithub(): Promise<User> {
+	signInWithGithub(): Promise<User> {
 		return this.provider.signInWithGithub();
 	}
 
-	async signInWithProvider(provider: OAuthProviders): Promise<User> {
+	signInWithProvider(provider: OAuthProviders): Promise<User> {
 		switch (provider) {
 			case OAuthProviders.Google:
 				return this.signInWithGoogle();
@@ -91,7 +69,7 @@ export class AuthService implements IAuthService {
 		}
 	}
 
-	async signOut(): Promise<void> {
+	signOut(): Promise<void> {
 		this.clearPendingProfile();
 		return this.provider.signOut();
 	}
@@ -111,6 +89,24 @@ export class AuthService implements IAuthService {
 
 	getCurrentUser(): User | null {
 		return this.provider.getCurrentUser();
+	}
+
+	private setPendingProfile(): void {
+		this.isPendingProfile = true;
+	}
+
+	/**
+	 * Clears the flag that indicates a pending profile update.
+	 * Called after the profile is updated or during sign-out.
+	 */
+	private clearPendingProfile(): void {
+		this.isPendingProfile = false;
+	}
+
+	private applyAuthOptions(options?: IAuthOptions): void {
+		if (options?.isProfilePending) {
+			this.setPendingProfile();
+		}
 	}
 }
 

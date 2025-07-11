@@ -21,6 +21,9 @@ const ProvidersOAuth: FC<ProvidersOAuthProps> = ({ disabled = false }) => {
 	const { enqueueSnackbar } = useSnackbar();
 
 	const onAuthProvider = async (provider: OAuthProviders) => {
+		// No preloader shown – external auth popup returns an error only after a 2–5s delay
+		// if closed by the user. This is a known behavior of the third-party auth flow,
+		// and showing a loader would create a confusing UX.
 		try {
 			const user = await authService.signInWithProvider(provider);
 			if (!user) {
