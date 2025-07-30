@@ -1,0 +1,101 @@
+{
+	"errors": {
+		"validation": {
+			"required": "{{field}} обовʼязкове.",
+			"min": "{{field}} мінімум {{min}} символів.",
+			"max": "{{field}} максимум {{max}} символів."
+		},
+		"network": {
+			"generic": "Щось пішло не так. Спробуйте ще раз.",
+			"requestFailed": "Проблеми з мережею"
+		},
+		"unknown": "Виникла невідома помилка."
+	},
+	"common": {
+		"buttons": {
+			"loadMore": {
+				"title": "Завантажити ще"
+			}
+		}
+	},
+	"pages": {
+		"notFound": {
+			"message": "Сторінку, яку ви шукаєте, не знайдено."
+		}
+	},
+	"components": {
+		"hierarchy": {
+			"hierarchyView": {
+				"noData": "Ви видалили всю ієрархію. Оновіть сторінку, щоб відновити її."
+			}
+		},
+		"common": {
+			"controls": {
+				"fullscreenToggle": {
+					"labels": {
+						"enter": "На весь екран",
+						"exit": "Вийти з режиму"
+					}
+				}
+			}
+		},
+		"auth": {
+			"authLayout": {
+				"or": "АБО"
+			},
+			"providerAuth": {
+				"title": "Увійти за допомогою",
+				"buttons": {
+					"google": "Продовжити через Google",
+					"github": "Продовжити через GitHub"
+				}
+			},
+			"signUpForm": {
+				"title": "Створіть обліковий запис",
+				"displayName": {
+					"title": "Ім’я для відображення",
+					"placeholder": "Петро Возняк"
+				},
+				"email": "Email",
+				"password": "Пароль",
+				"confirmPassword": "Повторіть пароль",
+				"buttons": {
+					"submit": "Зареєструватися"
+				},
+				"errors": {
+					"confirmPassword": {
+						"match": "Паролі мають збігатися."
+					},
+					"email": {
+						"alreadyUse": "Цей email уже використовується."
+					}
+				}
+			},
+			"signInForm": {
+				"title": "Увійдіть у свій обліковий запис",
+				"buttons": {
+					"submit": "Увійти"
+				},
+				"errors": {
+					"email": {
+						"invalid": "Некоректний email.",
+						"accountExists": "Акаунт із {{email}} вже існує і використовується іншим способом."
+					},
+					"invalidCredential": "Невірний email або пароль."
+				}
+			},
+			"authLinks": {
+				"signIn": "Вхід",
+				"signUp": "Реєстрація"
+			}
+		},
+		"profile": {
+			"defaultName": "Користувач",
+			"shortProfile": {
+				"buttons": {
+					"signOut": "Вийти"
+				}
+			}
+		}
+	}
+}
