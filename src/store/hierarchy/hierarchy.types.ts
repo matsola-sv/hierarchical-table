@@ -1,23 +1,22 @@
 import type { AsyncThunkPayloadCreator } from '@reduxjs/toolkit';
 
+import type { Pagination } from '@/models/lists';
 import type { TreeModelNode } from '@/models/tree';
 import type { RejectValue, ThunkCondition, ThunkConfig } from '@/store/thunk.types';
 
-import type { SearchResult } from '@/services/hierarchyService';
+import type { SearchResult } from '@/services/hierarchy/hierarchyService';
 
-export interface PaginationMeta {
+export interface HierarchyPagination extends Pagination {
 	loadedRootCount: number; // Total number of already loaded node children
-	limit: number; // Limit of items to load per request
-	totalCount: number; // Total number of node children
-	hasMore: boolean; // Flag indicating if there are more elements to load
 }
 
 export interface HierarchyContent<T> {
 	data: T[];
 	loading: boolean;
 	error: string | null;
-	pagination: PaginationMeta;
+	pagination: HierarchyPagination;
 }
+
 /** Hierarchy row data: object with string keys and unknown values */
 export type HierarchyItem = Record<string, unknown>;
 export type HierarchyState = HierarchyContent<TreeModelNode<HierarchyItem>>;

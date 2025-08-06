@@ -11,7 +11,7 @@ import {
 
 import { AppLanguage } from '@/models/language';
 
-import { languageService } from '@/services/languageService';
+import { languageService } from '@/services/language/languageService';
 
 const LangSwitcher: FC = () => {
 	const theme = useTheme();

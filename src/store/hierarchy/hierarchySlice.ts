@@ -14,8 +14,8 @@ import { normalizeError } from '@/utils/error';
 import { getPublicUrl } from '@/utils/url';
 
 // Services and utils
-import HierarchyService from '@/services/hierarchyService';
-import { cloneTreeExcludingNode } from '@/services/treeService';
+import HierarchyService from '@/services/hierarchy/hierarchyService';
+import { cloneTreeExcludingNode } from '@/services/tree/treeService';
 
 /**
  * Service to load and store the tree in memory,

@@ -2,7 +2,7 @@ import { type FC, type PropsWithChildren, useEffect, useState } from 'react';
 
 import type { AppLanguage } from '@/models/language';
 
-import { languageService } from '@/services/languageService';
+import { languageService } from '@/services/language/languageService';
 
 import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner/OverlaySpinner';
 
