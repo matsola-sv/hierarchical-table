@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '@/store';
 
 import App from '@/components/Core/App/App';
-import AuthProvider from '@/components/Core/Providers/AuthProvider';
+import IdentityProvider from '@/components/Core/Providers/IdentityProvider';
 import LangProvider from '@/components/Core/Providers/LangProvider';
 
 import '@/assets/styles/index.css';
@@ -16,9 +16,9 @@ root.render(
 	<StrictMode>
 		<Provider store={store}>
 			<LangProvider>
-				<AuthProvider>
+				<IdentityProvider>
 					<App />
-				</AuthProvider>
+				</IdentityProvider>
 			</LangProvider>
 		</Provider>
 	</StrictMode>,
