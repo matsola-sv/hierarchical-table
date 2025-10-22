@@ -9,6 +9,8 @@
 		"deploy": "gh-pages -d dist",
 		"dev": "vite",
 		"build": "rimraf dist && tsc -b && vite build",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},

@@ -14,7 +14,12 @@ import { removeHierarchyBranch } from '@/store/hierarchy/hierarchySlice';
 // Components
 import HierarchyTable from '@/components/Hierarchy/HierarchyTable/HierarchyTable';
 
-const ExpandableRow: FC<ExpandableRowProps> = ({ row, columns, background = '#f1f6f6', sx }) => {
+const ExpandableRow: FC<ExpandableRowProps> = ({
+	row,
+	columns,
+	background = '#f1f6f6',
+	sx,
+}) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const dispatch = useDispatch<AppDispatch>();
 
