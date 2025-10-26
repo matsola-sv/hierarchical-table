@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 
 import useLayoutMetrics from '@/hooks/useLayoutMetrics';
 
-import Header from '@/components/Common/Header/Header';
+import Header from '@/components/Common/Header';
 
 /**
  * Responsive layout with a fixed (per breakpoint) header and full-height content area.

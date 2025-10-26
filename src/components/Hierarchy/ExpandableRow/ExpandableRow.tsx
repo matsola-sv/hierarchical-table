@@ -12,7 +12,7 @@ import { type AppDispatch } from '@/store';
 import { removeHierarchyBranch } from '@/store/hierarchy/hierarchySlice';
 
 // Components
-import HierarchyTable from '@/components/Hierarchy/HierarchyTable/HierarchyTable';
+import HierarchyTable from '@/components/Hierarchy/HierarchyTable';
 
 const ExpandableRow: FC<ExpandableRowProps> = ({
 	row,

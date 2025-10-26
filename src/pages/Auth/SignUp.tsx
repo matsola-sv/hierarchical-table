@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 
-import AuthLayout from '@/components/Auth/AuthLayout/AuthLayout';
-import ProvidersOAuth from '@/components/Auth/ProvidersOAuth/ProvidersOAuth';
-import SignUpForm from '@/components/Auth/SignUpForm/SignUpForm';
+import AuthLayout from '@/components/Auth/AuthLayout';
+import ProvidersOAuth from '@/components/Auth/ProvidersOAuth';
+import SignUpForm from '@/components/Auth/SignUpForm';
 
 const SignUpPage: FC = () => {
 	const { t } = useTranslation();

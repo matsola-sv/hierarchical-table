@@ -18,8 +18,8 @@ import { type AppDispatch } from '@/store';
 import { setSignUpSubmitting } from '@/store/auth/authUISlice';
 import { updateUserProfile } from '@/store/profile/profileSlice';
 
-import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton/AppSubmitButton';
-import AppTextField from '@/components/Common/UI/Form/AppTextField/AppTextField';
+import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton';
+import AppTextField from '@/components/Common/UI/Form/AppTextField';
 
 const SignUpForm = () => {
 	const { t } = useTranslation();

@@ -9,8 +9,8 @@ import { OAuthProviders } from '@/models/auth';
 
 import { authService, parseAuthError } from '@/services/auth/authService';
 
-import SocialMediaButton from '@/components/Common/UI/Buttons/SocialMediaButton/SocialMediaButton';
-import GoogleIcon from '@/components/Common/UI/Icons/GoogleIcon/GoogleIcon';
+import SocialMediaButton from '@/components/Common/UI/Buttons/SocialMediaButton';
+import GoogleIcon from '@/components/Common/UI/Icons/GoogleIcon';
 
 export interface ProvidersOAuthProps {
 	disabled?: boolean; // Disables all OAuth provider buttons
