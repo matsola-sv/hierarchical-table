@@ -25,7 +25,7 @@ jest.mock('@mui/material', () => {
 	const original = jest.requireActual('@mui/material');
 	return {
 		...original,
-		Box: ({ children, ...props }: { children: ReactNode; [key: string]: any }) => (
+		Box: ({ children, ...props }: { children: ReactNode; [key: string]: unknown }) => (
 			<div {...props}>{children}</div>
 		),
 	};
