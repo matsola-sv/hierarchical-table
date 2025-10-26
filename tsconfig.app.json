@@ -28,5 +28,7 @@
 			"@/*": ["*"]
 		}
 	},
-	"include": ["src"]
+
+	/* "test" included so IDE highlights types in test files correctly (not recognized in tsconfig.test.json) */
+	"include": ["src", "test"]
 }

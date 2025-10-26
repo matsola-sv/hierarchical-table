@@ -34,6 +34,16 @@ jobs:
               # Faster and more reliable than npm install for CI/CD
               run: npm ci
 
+            # Manual format check — don't auto-fix silently
+            - name: Format check
+              run: npm run format:check
+
+            - name: Run ESLint
+              run: npm run lint
+
+            - name: Run tests
+              run: npm test
+
             - name: Build project
               run: npm run build -- --mode production
 

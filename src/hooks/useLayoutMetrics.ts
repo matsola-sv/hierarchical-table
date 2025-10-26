@@ -42,7 +42,10 @@ const formatHeights = (sizes: LayoutSizes, enabled: boolean): Heights => {
  * Returns `sx` styles for the page content (`body`), accounting for responsive header and footer heights.
  * If header/footer are disabled, their heights will be '0px' for all breakpoints.
  */
-const useLayoutMetrics = ({ header = true, footer = true }: LayoutMetricsProps): LayoutMetrics => {
+const useLayoutMetrics = ({
+	header = true,
+	footer = true,
+}: LayoutMetricsProps): LayoutMetrics => {
 	const headerHeights = formatHeights(HEADER_HEIGHTS, header);
 	const footerHeights = formatHeights(FOOTER_HEIGHTS, footer);
 	const heights = { header: headerHeights, footer: footerHeights };

@@ -1,0 +1,18 @@
+
+# System and editor files
+.vscode/
+.idea/
+.DS_Store
+README.md
+docs/
+
+# Dependency and assemblies
+node_modules/
+dist/
+
+# Configuration/generated files
+package-lock.json
+*.log
+
+# Generated types or GraphQL files (if any)
+*.d.ts
