@@ -15,8 +15,8 @@ import { authService } from '@/services/auth/authService';
 import type { AppDispatch } from '@/store';
 import { setSignInSubmitting } from '@/store/auth/authUISlice';
 
-import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton/AppSubmitButton';
-import AppTextField from '@/components/Common/UI/Form/AppTextField/AppTextField';
+import AppSubmitButton from '@/components/Common/UI/Buttons/AppSubmitButton';
+import AppTextField from '@/components/Common/UI/Form/AppTextField';
 
 const SignInForm = () => {
 	const { t } = useTranslation();

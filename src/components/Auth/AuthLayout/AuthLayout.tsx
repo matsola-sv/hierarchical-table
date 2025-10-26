@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Divider, useMediaQuery, useTheme } from '@mui/material';
 
-import PageTitle from '@/components/Common/UI/Pages/PageTitle/PageTitle';
-import VerticalDivider from '@/components/Common/UI/VerticalDivider/VerticalDivider';
+import PageTitle from '@/components/Common/UI/Pages/PageTitle';
+import VerticalDivider from '@/components/Common/UI/VerticalDivider';
 
 export interface AuthLayoutProps {
 	left: ReactNode;

@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 
 import { type TreeModelNode } from '@/models/tree';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface HierarchyTableProps {
 	data: TreeModelNode<any>[];
 	stickyHeader?: boolean; // Stick the header to the top during table scroll

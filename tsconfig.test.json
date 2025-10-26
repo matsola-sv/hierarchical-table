@@ -1,0 +1,10 @@
+{
+	"extends": "./tsconfig.app.json",
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"types": ["@testing-library/jest-dom"]
+	}
+}

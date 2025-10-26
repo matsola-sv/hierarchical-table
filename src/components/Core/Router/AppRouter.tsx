@@ -10,7 +10,7 @@ import SignUpPage from '@/pages/Auth/SignUp';
 import NotFoundPage from '@/pages/Errors/NotFound';
 import HomePage from '@/pages/Home';
 
-import PageLayout from '@/components/Core/Layouts/PageLayout/PageLayout';
+import PageLayout from '@/components/Core/Layouts/PageLayout';
 
 import PublicRoute from './PublicRoute';
 

@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { type HierarchyTableProps } from './HierarchyTable.types';
 
 // Components
-import ExpandableRow from '@/components/Hierarchy/ExpandableRow/ExpandableRow';
+import ExpandableRow from '@/components/Hierarchy/ExpandableRow';
 
 const HierarchyTable: FC<HierarchyTableProps> = props => {
 	const {

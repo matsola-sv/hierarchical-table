@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 
-import AuthLayout from '@/components/Auth/AuthLayout/AuthLayout';
-import ProvidersOAuth from '@/components/Auth/ProvidersOAuth/ProvidersOAuth';
-import SignInForm from '@/components/Auth/SignInForm/SignInForm';
+import AuthLayout from '@/components/Auth/AuthLayout';
+import ProvidersOAuth from '@/components/Auth/ProvidersOAuth';
+import SignInForm from '@/components/Auth/SignInForm';
 
 const SignInPage: FC = () => {
 	const { t } = useTranslation();

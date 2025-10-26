@@ -14,11 +14,11 @@ import { selectHierarchy } from '@/store/hierarchy/hierarchySelectors';
 import { fetchRootNodesThunk } from '@/store/hierarchy/hierarchySlice';
 
 // Components
-import FullscreenToggle from '@/components/Common/Controls/FullscreenToggle/FullscreenToggle';
-import EmptyState from '@/components/Common/EmptyState/EmptyState';
-import AppAsyncButton from '@/components/Common/UI/Buttons/AppAsyncButton/AppAsyncButton';
-import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner/OverlaySpinner';
-import HierarchyTable from '@/components/Hierarchy/HierarchyTable/HierarchyTable';
+import FullscreenToggle from '@/components/Common/Controls/FullscreenToggle';
+import EmptyState from '@/components/Common/EmptyState';
+import AppAsyncButton from '@/components/Common/UI/Buttons/AppAsyncButton';
+import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner';
+import HierarchyTable from '@/components/Hierarchy/HierarchyTable';
 
 const HierarchyView: FC = () => {
 	const tableContainerRef = useRef<HTMLDivElement>(null);

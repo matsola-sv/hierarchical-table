@@ -14,9 +14,7 @@ export interface AuthResult {
 }
 
 export const useAuth = (): AuthResult => {
-	const { uid, provider, authChecked } = useTypedSelector(
-		(state: RootState) => state.auth,
-	);
+	const { uid, provider, authChecked } = useTypedSelector((state: RootState) => state.auth);
 	const profile = useTypedSelector((state: RootState) => state.profile);
 	const isAuthenticated = Boolean(uid);
 	const isLoadingProfile = profile.loading;
