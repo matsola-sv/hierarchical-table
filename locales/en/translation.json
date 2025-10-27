@@ -1,0 +1,101 @@
+{
+	"errors": {
+		"validation": {
+			"required": "{{field}} is required.",
+			"min": "{{field}} must be at least {{min}} characters.",
+			"max": "{{field}} must be at most {{max}} characters."
+		},
+		"network": {
+			"generic": "Something went wrong. Please try again.",
+			"requestFailed": "Network problems"
+		},
+		"unknown": "Unknown error occurred."
+	},
+	"common": {
+		"buttons": {
+			"loadMore": {
+				"title": "Load more"
+			}
+		}
+	},
+	"pages": {
+		"notFound": {
+			"message": "Page you are looking for does not exists."
+		}
+	},
+	"components": {
+		"hierarchy": {
+			"hierarchyView": {
+				"noData": "You have removed the entire hierarchy. Reload the page to restore it."
+			}
+		},
+		"common": {
+			"controls": {
+				"fullscreenToggle": {
+					"labels": {
+						"enter": "Full screen",
+						"exit": "Exit full screen"
+					}
+				}
+			}
+		},
+		"auth": {
+			"authLayout": {
+				"or": "OR"
+			},
+			"providerAuth": {
+				"title": "Sign in with",
+				"buttons": {
+					"google": "Continue with Google",
+					"github": "Continue with GitHub"
+				}
+			},
+			"signUpForm": {
+				"title": "Create your account",
+				"displayName": {
+					"title": "Display Name",
+					"placeholder": "Peter Wozniak"
+				},
+				"email": "Email",
+				"password": "Password",
+				"confirmPassword": "Repeat Password",
+				"buttons": {
+					"submit": "Sign Up"
+				},
+				"errors": {
+					"confirmPassword": {
+						"match": "Passwords must match."
+					},
+					"email": {
+						"alreadyUse": "This email is already in use."
+					}
+				}
+			},
+			"signInForm": {
+				"title": "Sign in to your account",
+				"buttons": {
+					"submit": "Sign In"
+				},
+				"errors": {
+					"email": {
+						"invalid": "Invalid email address.",
+						"accountExists": "An account with this email {{email}} exists via a different sign-in method. Please use the original provider to sign in."
+					},
+					"invalidCredential": "Incorrect password or email."
+				}
+			},
+			"authLinks": {
+				"signIn": "Sign In",
+				"signUp": "Sign Up"
+			}
+		},
+		"profile": {
+			"defaultName": "User",
+			"shortProfile": {
+				"buttons": {
+					"signOut": "Sign Out"
+				}
+			}
+		}
+	}
+}
