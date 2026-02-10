@@ -9,6 +9,7 @@ import SignInPage from '@/pages/Auth/SignIn';
 import SignUpPage from '@/pages/Auth/SignUp';
 import NotFoundPage from '@/pages/Errors/NotFound';
 import HomePage from '@/pages/Home';
+import PostsPage from '@/pages/Posts';
 
 import PageLayout from '@/components/Core/Layouts/PageLayout';
 
@@ -38,6 +39,14 @@ const AppRouter: FC = () => (
 					element={
 						<PublicRoute>
 							<SignInPage />
+						</PublicRoute>
+					}
+				/>
+				<Route
+					path={ROUTES.POSTS}
+					element={
+						<PublicRoute>
+							<PostsPage />
 						</PublicRoute>
 					}
 				/>
