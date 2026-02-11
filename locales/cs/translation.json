@@ -1,0 +1,101 @@
+{
+	"errors": {
+		"validation": {
+			"required": "{{field}} je povinné.",
+			"min": "{{field}} musí mít alespoň {{min}} znaků.",
+			"max": "{{field}} může mít maximálně {{max}} znaků."
+		},
+		"network": {
+			"generic": "Něco se pokazilo. Zkuste znovu.",
+			"requestFailed": "Problémy se sítí."
+		},
+		"unknown": "Došlo k neznámé chybě."
+	},
+	"common": {
+		"buttons": {
+			"loadMore": {
+				"title": "Načíst více"
+			}
+		}
+	},
+	"pages": {
+		"notFound": {
+			"message": "Stránka, kterou hledáte, neexistuje."
+		}
+	},
+	"components": {
+		"hierarchy": {
+			"hierarchyView": {
+				"noData": "Hierarchie byla odstraněna. Obnovte stránku."
+			}
+		},
+		"common": {
+			"controls": {
+				"fullscreenToggle": {
+					"labels": {
+						"enter": "Celá obrazovka",
+						"exit": "Ukončit režim"
+					}
+				}
+			}
+		},
+		"auth": {
+			"authLayout": {
+				"or": "NEBO"
+			},
+			"providerAuth": {
+				"title": "Přihlásit se pomocí",
+				"buttons": {
+					"google": "Pokračovat přes Google",
+					"github": "Pokračovat přes GitHub"
+				}
+			},
+			"signUpForm": {
+				"title": "Vytvořte si účet",
+				"displayName": {
+					"title": "Zobrazované jméno",
+					"placeholder": "Peter Wozniak"
+				},
+				"email": "Email",
+				"password": "Heslo",
+				"confirmPassword": "Zopakujte heslo",
+				"buttons": {
+					"submit": "Registrovat se"
+				},
+				"errors": {
+					"confirmPassword": {
+						"match": "Hesla se musí shodovat."
+					},
+					"email": {
+						"alreadyUse": "Tento email je již používán."
+					}
+				}
+			},
+			"signInForm": {
+				"title": "Přihlaste se k účtu",
+				"buttons": {
+					"submit": "Přihlaste se"
+				},
+				"errors": {
+					"email": {
+						"invalid": "Neplatný email.",
+						"accountExists": "Účet s {{email}} už existuje a je používán jiným způsobem."
+					},
+					"invalidCredential": "Nesprávné heslo nebo email."
+				}
+			},
+			"authLinks": {
+				"signIn": "Přihlášení",
+				"signUp": "Registrace"
+			}
+		},
+		"profile": {
+			"defaultName": "Uživatel",
+			"shortProfile": {
+				"buttons": {
+					"signOut": "Odhlásit"
+				}
+			}
+		}
+	}
+}
