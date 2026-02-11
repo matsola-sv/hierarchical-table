@@ -8,7 +8,7 @@ import type { IdentityState } from '@/store/auth/authSlice';
 export interface AuthResult {
 	isAuthenticated: boolean;
 	isLoadingProfile: boolean;
-	authChecked: boolean; // Auth check completed — result is known even if user isn't authenticated
+	isAuthReady: boolean; // Auth state resolved — user is known or confirmed unauthenticated
 	identity: IdentityState;
 	profile: User | null;
 }
@@ -16,13 +16,15 @@ export interface AuthResult {
 export const useAuth = (): AuthResult => {
 	const { uid, provider, authChecked } = useTypedSelector((state: RootState) => state.auth);
 	const profile = useTypedSelector((state: RootState) => state.profile);
+
 	const isAuthenticated = Boolean(uid);
 	const isLoadingProfile = profile.loading;
+	const isAuthReady = authChecked && !profile.loading;
 
 	return {
 		isAuthenticated,
 		isLoadingProfile,
-		authChecked,
+		isAuthReady,
 		identity: { uid, provider },
 		profile: profile.user,
 	};

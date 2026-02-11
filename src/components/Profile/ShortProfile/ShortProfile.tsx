@@ -10,18 +10,17 @@ import { getDisplayName } from '@/utils/profile';
 import { authService } from '@/services/auth/authService';
 
 import AuthLinks from '@/components/Auth/AuthLinks';
-import BlockSpinner from '@/components/Common/UI/Spinners/BlockSpinner';
-import LogoutButton from '@/components/Profile/LogoutButton';
-import UserAvatar from '@/components/Profile/UserAvatar';
+import { BlockSpinner } from '@/components/Common/UI/Spinners';
+import { LogoutButton, UserAvatar } from '@/components/Profile';
 
 export const ShortProfile: FC = () => {
 	const { t } = useTranslation();
-	const { isAuthenticated, profile, isLoadingProfile, authChecked } = useAuth();
+	const { isAuthenticated, profile, isAuthReady } = useAuth();
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 	// If auth check hasn't been completed or profile is still loading
-	if (!authChecked || isLoadingProfile) {
+	if (!isAuthReady) {
 		return (
 			<Box sx={{ position: 'relative', width: '100%', minHeight: '2rem' }}>
 				<BlockSpinner />

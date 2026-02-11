@@ -10,7 +10,7 @@ import SignUpPage from '@/pages/Auth/SignUp';
 import NotFoundPage from '@/pages/Errors/NotFound';
 import HomePage from '@/pages/Home';
 
-import PageLayout from '@/components/Core/Layouts/PageLayout';
+import { PageLayout } from '@/components/Core/Layouts';
 
 import PublicRoute from './PublicRoute';
 
@@ -25,6 +25,8 @@ const AppRouter: FC = () => (
 					index
 					element={<HomePage />}
 				/>
+
+				{/* Only for non-authorized */}
 				<Route
 					path={ROUTES.SIGN_UP}
 					element={
@@ -41,6 +43,8 @@ const AppRouter: FC = () => (
 						</PublicRoute>
 					}
 				/>
+
+				{/* Accessible to everyone */}
 				<Route
 					path='*'
 					element={<NotFoundPage />}
