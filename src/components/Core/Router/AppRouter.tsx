@@ -26,6 +26,8 @@ const AppRouter: FC = () => (
 					index
 					element={<HomePage />}
 				/>
+
+				{/* Only for non-authorized */}
 				<Route
 					path={ROUTES.SIGN_UP}
 					element={
@@ -34,6 +36,7 @@ const AppRouter: FC = () => (
 						</PublicRoute>
 					}
 				/>
+
 				<Route
 					path={ROUTES.SIGN_IN}
 					element={
@@ -42,14 +45,13 @@ const AppRouter: FC = () => (
 						</PublicRoute>
 					}
 				/>
+
+				{/* Accessible to everyone */}
 				<Route
 					path={ROUTES.POSTS}
-					element={
-						<PublicRoute>
-							<PostsPage />
-						</PublicRoute>
-					}
+					element={<PostsPage />}
 				/>
+
 				<Route
 					path='*'
 					element={<NotFoundPage />}

@@ -1,4 +1,4 @@
-import { type FC, type PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import * as ROUTES from '@/constants/routes';
@@ -7,18 +7,17 @@ import { useAuth } from '@/hooks/useAuth';
 
 import OverlaySpinner from '@/components/Common/UI/Spinners/OverlaySpinner';
 
-const PublicRoute: FC<PropsWithChildren> = ({ children }) => {
+const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
 	const { isAuthenticated, isLoadingProfile } = useAuth();
 
 	if (isLoadingProfile) {
 		return <OverlaySpinner />;
 	}
 
-	// Redirect authenticated users to HOME while profile loads
-	if (isAuthenticated) {
+	if (!isAuthenticated) {
 		return (
 			<Navigate
-				to={ROUTES.HOME}
+				to={ROUTES.SIGN_IN}
 				replace
 			/>
 		);
@@ -26,4 +25,4 @@ const PublicRoute: FC<PropsWithChildren> = ({ children }) => {
 	return <>{children}</>;
 };
 
-export default PublicRoute;
+export default ProtectedRoute;

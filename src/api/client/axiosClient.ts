@@ -28,8 +28,6 @@ export const createAxiosClient = (clientConfig: ClientConfig): AxiosInstance => 
 		withCredentials, // for HttpOnly cookie
 	});
 
-	console.log('createAxiosClient');
-
 	/** Processes the request before sending (save data in storage if you need) */
 	client.interceptors.request.use(
 		config => {
